@@ -63,11 +63,23 @@ a = [1, 2, 3, "okay", 1, 1, 1]
 print(a.count(1))  # 4
 
 b = [1, 2, 3, [1, 2, 3, 1]]
-print(b.count(1)) # 1
+print(b.count(1))  # 1
 # 3이 나오게 하려면?
 print(b.count(1) + b[3].count(1))
 
 # extend
-a = [1,2,3,4]
-b = [5,6,7,8]
+a = [1, 2, 3, 4]
+b = [5, 6, 7, 8]
 # [1,2,3,4,5,6,7,8]
+a.extend(b)
+print(a)
+c = "good"
+b.extend(c)
+print(b)
+
+a = ["good","okay"]
+#b = a.index("aaaa") # ValueError: 'aaaa' is not in list
+#print(b)
+c = a.index("okay")
+print(c)
+
