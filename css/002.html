@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 전체 선택자 */
+      * {
+        color: brown;
+      }
+      /* 타입 선택자 */
+      h1 {
+        color: blue;
+      }
+      /* id 선택자 */
+      #aqua {
+        color: aqua;
+      }
+      /* 클래스 선택자 */
+      .green {
+        background-color: yellowgreen;
+        color: green;
+        font-weight: 900;
+      }
+      .text-bold {
+        font-weight: bold;
+      }
+      /* 다른 선택자에 이어붙일 수도 있다. */
+      /* 띄어쓰기 없이 .을 붙여서 선택자 작성 */
+      h1.green {
+        background-color: wheat;
+      }
+      /* 특성(속성 선택자) */
+      [type="reset"] {
+        background-color: silver;
+      }
+      [type="submit"] {
+        background-color: gold;
+      }
+      /* 그룹 선택자 */
+      a,
+      button.pink {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="green">위니브</h1>
+    <p class="green">Lorem ipsum dolor sit amet.</p>
+    <div id="aqua">이것은 id 선택자로 지정한 div 입니다.</div>
+    <div id="red"></div>
+    <p class="green text-bold">이것은 class 선택자로 지정한 p 태그입니다.</p>
+
+    <button type="button" class="green">버튼1</button>
+    <button type="submit" class="green">버튼2</button>
+    <button type="reset">버튼3</button>
+    <a href="#">a태그입니다.</a>
+    <button class="pink">분홍색 버튼입니다.</button>
+  </body>
+</html>

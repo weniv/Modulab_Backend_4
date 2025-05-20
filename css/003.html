@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>복합 선택자</title>
+    <style>
+      /* 자손 선택자 */
+      section p {
+        font-weight: bold;
+      }
+      /* 자식 선택자 */
+      section > p {
+        color: aquamarine;
+      }
+      /* 일반 형제 선택자 (동생들) */
+      section ~ p {
+        text-decoration: underline;
+      }
+      /* 인접 형제 선택자  */
+      section + p {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <p>lorem ipsum dolor sit amet</p>
+    <p>lorem ipsum dolor sit amet</p>
+    <p>lorem ipsum dolor sit amet</p>
+    <section>
+      <div>
+        <p>lorem ipsum dolor sit amet</p>
+      </div>
+      <p>lorem ipsum dolor sit amet</p>
+      <p>lorem ipsum dolor sit amet</p>
+    </section>
+    <p>lorem ipsum dolor sit amet</p>
+    <p>lorem ipsum dolor sit amet</p>
+    <p>lorem ipsum dolor sit amet</p>
+  </body>
+</html>

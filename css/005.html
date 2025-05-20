@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글꼴 단위</title>
+    <style>
+      html {
+        font-size: 15px;
+      }
+      /* 브라우저의 기본 폰트 크기 :16px */
+      .px {
+        font-size: 18px;
+        font-weight: 100;
+      }
+      .em {
+        font-size: 1.5em;
+        /* 부모요소의 1.5배 */
+      }
+      .rem {
+        /* 루트 요소의 1.8배 */
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="px">px 단위로 설정한 크기</div>
+    <div class="em">
+      em 단위로 설정한 크기
+      <div class="em">em 단위로 설정한 크기2</div>
+    </div>
+    <div class="rem">
+      rem 단위로 설정한 크기
+      <div class="rem">rem 단위로 설정한 크기2</div>
+    </div>
+  </body>
+</html>

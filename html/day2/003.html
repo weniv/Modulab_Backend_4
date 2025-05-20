@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>table 태그 실습</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      caption {
+        caption-side: top;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <!-- caption : 표의 제목, table 첫번째 자식으로 와야함 -->
+      <caption>
+        학생 성적표
+      </caption>
+      <tr>
+        <th>학생</th>
+        <th>영어</th>
+        <th>수학</th>
+      </tr>
+      <tr>
+        <td>라이캣</td>
+        <td>100</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>로지</td>
+        <td>80</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>평균</td>
+        <td>90</td>
+        <td>90</td>
+      </tr>
+    </table>
+  </body>
+</html>
