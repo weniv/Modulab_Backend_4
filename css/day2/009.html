@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+      }
+      .box {
+        display: block;
+        /* display: inline; */
+        /* display: inline-block; */
+        background-color: lightblue;
+        margin: 10px;
+        width: 500px;
+        height: 200px;
+        margin: 10px;
+        padding: 10px;
+        /* 인라인 요소는 width,height 지정해줄 수 없고
+        margin은 좌우만 적용된다. */
+        /* display: none; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">이것은 box div 입니다.</div>
+    <span class="box">이것은 box span 입니다. </span>
+    <span class="box">이것은 box span 입니다. </span>
+  </body>
+</html>

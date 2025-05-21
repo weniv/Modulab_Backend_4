@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가상요소</title>
+    <style>
+      .quote::before {
+        /* 요소의 전에 새로운 요소를 만들어 콘텐츠를 추가할 수 있게 해주는 가상요소 */
+        content: "⭐️";
+        font-size: 2em;
+      }
+      .quote::after {
+        /* 요소의 후에 새로운 요소를 넣는 가상요소 */
+        content: "~";
+        color: red;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="quote">이 또한 지나가리라</p>
+  </body>
+</html>
