@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex 레이아웃 잡기</title>
+    <style>
+      .main {
+        background-color: gray;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      header {
+        background-color: salmon;
+        height: 50px;
+      }
+      .container {
+        display: flex;
+        height: 200px;
+        gap: 10px;
+      }
+      .container section {
+        background-color: salmon;
+        width: 80%;
+      }
+      .container aside {
+        background-color: salmon;
+        width: 20%;
+      }
+      footer {
+        background-color: salmon;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <header>header</header>
+      <div class="container">
+        <section>section</section>
+        <aside>aside</aside>
+      </div>
+      <footer>footer</footer>
+    </div>
+  </body>
+</html>

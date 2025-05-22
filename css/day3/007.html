@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>레이아웃 - grid</title>
+    <style>
+      .container {
+        background-color: gray;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 100px 1fr 100px;
+        height: 600px;
+      }
+      header {
+        background-color: lightblue;
+        /* grid-row-start: 시작 행 (1)
+        grid-column-start: 시작 열 (2)
+        grid-row-end: 끝 행 (3)
+        grid-column-end: 끝 열 (4) */
+
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        /* 위 네줄과 동일한 단축속성 grid-area */
+        grid-area: 1/1/2/3;
+      }
+      main {
+        background-color: lightblue;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 2;
+      }
+      aside {
+        background-color: lightblue;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 2;
+        grid-column-end: 3;
+      }
+      footer {
+        background-color: lightblue;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">header</header>
+      <main class="section">section</main>
+      <aside class="aside">aside</aside>
+      <footer class="footer">footer</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        /* 기준 위치를 맞춰주려면 */
+        position: relative;
+      }
+      .box {
+        background-color: #ccc;
+        width: 200px;
+        height: 200px;
+      }
+      .pink {
+        background-color: pink;
+        /* 1. 해당 컨테이너를 30px씩 왼쪽 상단에서 이동시키고 싶다면? */
+        /* top: 30px;
+        left: 30px; */
+        /* position: relative; */
+        /* 2. 외부 container를 기준으로 30px씩 이동시키고 싶다면? */
+        /* 기준 위치를 외부 container로 조정해줘야한다. */
+        /* position: absolute; */
+        position: relative;
+      }
+      .baby {
+        background-color: teal;
+        width: 100px;
+        height: 100px;
+        /* 3. baby를 pink의 가운데에 위치하게 하고싶다. */
+        /* position: relative;
+        top: 25%;
+        left: 25%; */
+        position: absolute;
+        top: 50px;
+        left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+      <div class="box">4</div>
+      <div class="box pink">
+        <div class="baby">5</div>
+      </div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+      <div class="box">9</div>
+    </div>
+  </body>
+</html>

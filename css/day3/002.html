@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>z-index</title>
+    <style>
+      .container {
+        position: relative;
+        height: 200px;
+        background-color: gainsboro;
+        z-index: 0;
+      }
+      .box {
+        /* 위치가 지정된 요소에만 z축 순서를 결정할 수 있다. */
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .red {
+        background-color: rgba(255, 0, 0, 0.8);
+        top: 40px;
+        left: 40px;
+        z-index: -10;
+      }
+      .green {
+        background-color: rgba(0, 255, 0, 0.8);
+        top: 80px;
+        left: 80px;
+        z-index: 100;
+      }
+      .blue {
+        background-color: rgba(0, 0, 255, 0.8);
+        top: 120px;
+        left: 120px;
+        z-index: 10;
+      }
+      /* css 렌더링 순서 */
+      /* 1. 부모 요소의 배경/ 테두리
+      2. 음수 z-index를 가진 자식 요소
+      3. 부모요소의 텍스트
+      4. 양수 z-index 가진 자식요소 */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum ullam
+      magnam vel quos veritatis sequi quas minima repudiandae quia, maxime
+      excepturi sed voluptas accusantium aliquid modi? Non voluptatem reiciendis
+      eveniet!
+      <div class="box red">Red Box</div>
+      <div class="box green">Green Box</div>
+      <div class="box blue">Blue Box</div>
+    </div>
+  </body>
+</html>

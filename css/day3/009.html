@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 선택자 실습</title>
+    <style>
+      /* 카드 기본 스타일 */
+      .card {
+        padding: 15px;
+        display: inline-block;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      }
+
+      /* nth-child 선택자로 카드 색상 지정 */
+      section .card:nth-child(1) {
+        background-color: #ff6b6b;
+      }
+      section .card:nth-child(2) {
+        background-color: #ffa06b;
+      }
+      section .card:nth-child(3) {
+        background-color: #ffd06b;
+      }
+      section .card:nth-child(4) {
+        background-color: #a0ff6b;
+      }
+      section .card:nth-child(5) {
+        background-color: #6bd4ff;
+      }
+      section .card:nth-child(6) {
+        background-color: #6b8cff;
+      }
+
+      /* 짝수 번째 카드의 텍스트 색상 */
+      section .card:nth-child(even) {
+        color: white;
+      }
+
+      /* 첫 번째와 마지막 카드에 특별한 테두리 */
+      section .card:first-child,
+      section .card:last-child {
+        border: dashed 5px #333;
+      }
+
+      /* 리스트 가상 요소 스타일링 */
+      .team-list li:first-child::before {
+        content: "🌟";
+        margin-right: 5px;
+      }
+      .team-list li:not(:first-child)::before {
+        content: "✅";
+        margin-right: 5px;
+      }
+      /* 리스트 뒤에 가상 요소 추가 */
+      .team-list li:not(:last-child)::after {
+        content: "팀원";
+        font-size: 10px;
+        color: gray;
+        margin-left: 5px;
+      }
+
+      .team-list li:last-child::after {
+        content: "팀장";
+        font-size: 10px;
+        color: red;
+        font-weight: bold;
+        margin-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>프로젝트 팀 카드</h1>
+
+    <section>
+      <div class="card">HTML</div>
+      <div class="card">CSS</div>
+      <div class="card">JavaScript</div>
+      <div class="card">Python</div>
+      <div class="card">FastAPI</div>
+      <div class="card">Django</div>
+    </section>
+
+    <h2>팀원 목록</h2>
+    <ul class="team-list">
+      <li>로지</li>
+      <li>지지</li>
+      <li>하티</li>
+      <li>라이캣</li>
+      <li>웨이드</li>
+      <li>써니</li>
+    </ul>
+  </body>
+</html>

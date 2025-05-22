@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex</title>
+    <style>
+      .container {
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        flex-direction: column-reverse;
+        flex-direction: row-reverse;
+        flex-direction: row;
+
+        justify-content: flex-start;
+        justify-content: flex-end;
+        justify-content: center;
+        /* 아이템 사이에 동일한 간격 */
+        justify-content: space-between;
+        /* 아이템 주변에 동일한 간격 */
+        justify-content: space-around;
+        /* 아이템 주변과 시작,끝에 동일한 간격 설정 */
+        justify-content: space-evenly;
+        justify-content: center;
+        height: 800px;
+
+        /* 교차축 정렬 */
+        align-items: flex-start;
+        align-items: flex-end;
+        align-items: center;
+        /* 교차축을 다 채우기 위해 아이템 늘리게 됨.item의 height 값 없어야 */
+        align-items: stretch;
+        /* 텍스트의 기준선에 정렬 */
+        /* align-items: baseline; */
+        align-items: center;
+
+        /* 간격 */
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .item {
+        width: 100px;
+        height: 100px;
+        background-color: tomato;
+        border: 1px solid saddlebrown;
+      }
+      .center {
+        /* 가운데 정렬 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .first {
+        font-size: 30px;
+      }
+      .last {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox</h1>
+    <div class="container">
+      <div class="item first">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item last">5</div>
+      <div class="item first">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item last">5</div>
+      <div class="item first">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item last">5</div>
+    </div>
+  </body>
+</html>
