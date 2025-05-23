@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeniBooks - 프로그래밍 전자책</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+    <!-- 메인 헤더 -->
+    <header role="banner">
+        <div class="container">
+            <h1 class="logo">
+                <a href="/" aria-label="WeniBooks 홈페이지">wenibooks</a>
+            </h1>
+            <nav aria-label="사용자 메뉴">
+                <div class="language-selector">
+                    <select aria-label="언어 선택">
+                        <option value="ko">한국어</option>
+                        <option value="en">English</option>
+                    </select>
+                    <span aria-hidden="true">한국어로 번역하세요</span>
+                </div>
+                <button type="button" class="search-toggle" aria-label="검색 열기">
+                    <span aria-hidden="true">🔍</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main>
+        <!-- 히어로 섹션 -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="container">
+                <article class="hero-content">
+                    <header class="hero-text">
+                        <p class="hero-subtitle">E-BOOK 출간</p>
+                        <h2 id="hero-heading" class="hero-title">
+                            전 세계가 주목한 MCP를<br>
+                            가장 빠르게 소개한 단 한 권의 책
+                        </h2>
+                        <p class="hero-description">
+                            MCP 학습: 클로드로 복잡, 단순, 유기 웹 확장이 의례웹사이 체험하시라 with python
+                        </p>
+                        <a href="#books" class="hero-button" role="button">지금 바로가기</a>
+                    </header>
+                    <figure class="hero-image">
+                        <img src="/api/placeholder/300/400" alt="MCP 북실 표지 이미지" class="book-cover">
+                    </figure>
+                </article>
+                
+                <!-- 슬라이더 네비게이션 -->
+                <nav aria-label="히어로 슬라이더" class="hero-navigation">
+                    <ol class="hero-dots">
+                        <li><button type="button" class="dot active" aria-label="첫 번째 슬라이드" aria-current="true"></button></li>
+                        <li><button type="button" class="dot" aria-label="두 번째 슬라이드"></button></li>
+                        <li><button type="button" class="dot" aria-label="세 번째 슬라이드"></button></li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <!-- 검색 섹션 -->
+        <section class="search-section" aria-labelledby="search-heading">
+            <div class="container">
+                <h2 id="search-heading" class="visually-hidden">도서 검색</h2>
+                <form role="search" class="search-form">
+                    <label for="book-search" class="visually-hidden">도서 검색</label>
+                    <input 
+                        type="search" 
+                        id="book-search"
+                        name="query"
+                        placeholder="어떤 책을 찾으시나요?" 
+                        class="search-input"
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="search-button" aria-label="검색 실행">
+                        <span aria-hidden="true">🔍</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 카테고리 필터 -->
+        <section class="categories" aria-labelledby="categories-heading">
+            <div class="container">
+                <h2 id="categories-heading" class="visually-hidden">도서 카테고리</h2>
+                <nav aria-label="도서 카테고리 필터">
+                    <ul class="category-tabs" role="tablist">
+                        <li role="presentation">
+                            <button type="button" class="tab" role="tab" aria-selected="true" aria-controls="books-panel" id="tab-all">전체</button>
+                        </li>
+                        <li role="presentation">
+                            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="books-panel" id="tab-large">크고 사이즈</button>
+                        </li>
+                        <li role="presentation">
+                            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="books-panel" id="tab-web">웹디자인 서비스</button>
+                        </li>
+                        <li role="presentation">
+                            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="books-panel" id="tab-app">어플앱 사이즈</button>
+                        </li>
+                        <li role="presentation">
+                            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="books-panel" id="tab-etc">기타</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- 도서 목록 -->
+        <section id="books" class="books-section" aria-labelledby="books-heading">
+            <div class="container">
+                <h2 id="books-heading" class="visually-hidden">도서 목록</h2>
+                <div id="books-panel" role="tabpanel" aria-labelledby="tab-all">
+                    
+                    <!-- 첫 번째 행 -->
+                    <div class="books-row">
+                        <article class="book-card">
+                            <header class="book-header">
+                                <figure class="book-image">
+                                    <img src="/api/placeholder/200/250" alt="컨고한 PYTHON 책 표지">
+                                </figure>
+                                <div class="book-meta">
+                                    <p class="publisher">주식회사 위니 | 출간사: 사노출판</p>
+                                    <h3 class="book-title">컨고한 파이썬</h3>
+                                    <p class="book-price">
+                                        <span class="price-label">전자책</span>
+                                        <span class="price-value">무료</span>
+                                    </p>
+                                </div>
+                            </header>
+                            
+                            <div class="book-content">
+                                <p class="book-description">
+                                    웹개발, 인공지능, 게임 개발, 데이터 분석, 업무 자동화 등 다양한 분야에서 활용되는 파올그래밍 언어 파이썬을 공부하고...
+                                </p>
+                            </div>
+                            
+                            <footer class="book-actions">
+                                <a href="/books/python-basic" class="book-button" role="button">Web-book</a>
+                            </footer>
+                        </article>
+
+                        <article class="book-card">
+                            <header class="book-header">
+                                <figure class="book-image">
+                                    <img src="/api/placeholder/200/250" alt="Python 베이스캠프 책 표지">
+                                </figure>
+                                <div class="book-meta">
+                                    <p class="publisher">주식회사 위니 | 출간사: 사노출판</p>
+                                    <h3 class="book-title">파이썬 베이스캠프</h3>
+                                    <p class="book-price">
+                                        <span class="price-label">전자책</span>
+                                        <span class="price-value">무료</span>
+                                    </p>
+                                </div>
+                            </header>
+                            
+                            <div class="book-content">
+                                <p class="book-description">
+                                    파이썬을 쉽고 체계적으로 기초 기초부터 시작해 웹의로게 차근차근 옮길 수 있는 베이스캠프 사이트를 만나보세요.
+                                </p>
+                            </div>
+                            
+                            <footer class="book-actions">
+                                <a href="/books/python-basecamp" class="book-button" role="button">Web-book</a>
+                                <p class="read-stats">
+                                    <span class="read-count">온라인 조회</span>
+                                </p>
+                            </footer>
+                        </article>
+                    </div>
+
+                    <!-- 두 번째 행 -->
+                    <div class="books-row">
+                        <article class="book-card">
+                            <header class="book-header">
+                                <figure class="book-image">
+                                    <img src="/api/placeholder/200/250" alt="JavaScript 베이스캠프 책 표지">
+                                </figure>
+                                <div class="book-meta">
+                                    <p class="publisher">주식회사 위니 | 출간사: 사노출판</p>
+                                    <h3 class="book-title">JavaScript 베이스캠프</h3>
+                                    <p class="book-price">
+                                        <span class="price-label">전자책</span>
+                                        <span class="price-value">무료</span>
+                                    </p>
+                                </div>
+                            </header>
+                            
+                            <div class="book-content">
+                                <p class="book-description">
+                                    웹 개발에서 핵심 다부터 번전하한 웹사이트 픽업에 시작되는 인기 없어 JavaScript, 기술 개념을 실전 테앍을 힉습해 느껴집니다.
+                                </p>
+                            </div>
+                            
+                            <footer class="book-actions">
+                                <a href="/books/javascript-basecamp" class="book-button" role="button">Web-book</a>
+                                <p class="read-stats">
+                                    <span class="read-count">온라인 조회</span>
+                                </p>
+                            </footer>
+                        </article>
+
+                        <article class="book-card">
+                            <header class="book-header">
+                                <figure class="book-image">
+                                    <img src="/api/placeholder/200/250" alt="HTML/CSS 베이스캠프 책 표지">
+                                </figure>
+                                <div class="book-meta">
+                                    <p class="publisher">주식회사 위니 | 출간사: 사노출판</p>
+                                    <h3 class="book-title">HTML/CSS 베이스캠프</h3>
+                                    <p class="book-price">
+                                        <span class="price-label">전자책</span>
+                                        <span class="price-value">무료</span>
+                                    </p>
+                                </div>
+                            </header>
+                            
+                            <div class="book-content">
+                                <p class="book-description">
+                                    웹 페이지의 구조를 정의하는 HTML과 웹 페이지의 스타일을 정의하는 CSS를 다루면 완전한 디자인을 고급의 수 있습...
+                                </p>
+                            </div>
+                            
+                            <footer class="book-actions">
+                                <a href="/books/html-css-basecamp" class="book-button" role="button">Web-book</a>
+                                <p class="read-stats">
+                                    <span class="read-count">온라인 조회</span>
+                                </p>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

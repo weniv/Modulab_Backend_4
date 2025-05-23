@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웨니북스 - 프로그래밍 도서 플랫폼</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-blue-600">wenibooks</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">한국어로 번역하세요.</span>
+                    <button class="p-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <div class="flex-1">
+                    <p class="text-sm mb-2 opacity-90">E-BOOK 출간</p>
+                    <h2 class="text-4xl font-bold mb-4 leading-tight">
+                        전 세계가 주목한 MCP를<br>
+                        가장 빠르게 소개한 단 한 권의 책
+                    </h2>
+                    <p class="text-lg mb-6 opacity-90">
+                        MCP 역시, 클로드로 작성, 문법, 유지 보수까지 직접하여 작업하여 with python
+                    </p>
+                    <button class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        지금 바로가기
+                    </button>
+                </div>
+                <div class="flex-shrink-0 ml-8">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%23000'/%3E%3Ctext x='150' y='50' text-anchor='middle' fill='white' font-size='20' font-weight='bold'%3EMCP%3C/text%3E%3Ctext x='150' y='80' text-anchor='middle' fill='white' font-size='16'%3E실습%3C/text%3E%3Cpolygon points='150,120 120,180 180,180' fill='%2300BFFF'/%3E%3Crect x='130' y='200' width='40' height='20' fill='%23FFF'/%3E%3Crect x='130' y='230' width='40' height='20' fill='%23FFF'/%3E%3Crect x='130' y='260' width='40' height='20' fill='%23FFF'/%3E%3C/svg%3E" alt="MCP 실습 책" class="w-72 h-96 rounded-lg shadow-2xl">
+                        <div class="absolute -top-4 -left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            실시간<br>업데이트
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination dots -->
+        <div class="flex justify-center mt-8 space-x-2">
+            <div class="w-2 h-2 bg-white rounded-full opacity-100"></div>
+            <div class="w-2 h-2 bg-white rounded-full opacity-50"></div>
+            <div class="w-2 h-2 bg-white rounded-full opacity-50"></div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto">
+                <div class="relative">
+                    <input type="text" placeholder="어떤 책을 찾으시나요?" class="w-full px-6 py-4 rounded-full border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Category buttons -->
+                <div class="flex justify-center mt-6 space-x-4">
+                    <button class="bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-medium">전체</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-300">프로그래밍</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-300">웹개발 서버</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-300">인문학 서적</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full text-sm font-medium hover:bg-gray-300">기타</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Book 1 - Python -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 h-64 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-4">🐍</div>
+                                <h3 class="text-xl font-bold">완전한<br>PYTHON</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-2 py-1 rounded text-xs">
+                            주디제스 워너 | 올리사리스-북클럽
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">완고한 파이썬</h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            기초부터 전문가까지 매개체기로 배울 활용법 쉽게 이해할 수 있어 실무 중심 코딩까지
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-600 font-semibold">무료</span>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600">
+                                Web-book
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book 2 - Python Basic -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-orange-400 to-yellow-500 h-64 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-4">🐍</div>
+                                <h3 class="text-xl font-bold">Python<br>베이스캠프</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-orange-600 text-white px-2 py-1 rounded text-xs">
+                            주디제스 워너 | 올리사리스-북클럽
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">파이썬 베이스캠프</h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            파이썬을 쉽고 재미있게 기초 기초부터 차근차근 할 수 있는 베이스캠프 시작을 배우고 실습을 할 수 있는 환경
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-600 font-semibold">무료</span>
+                            <div class="flex space-x-2">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600">
+                                    Web-book
+                                </button>
+                                <span class="text-gray-500 text-sm">온라인 강의</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book 3 - JavaScript -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-yellow-500 to-orange-500 h-64 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-4">JS</div>
+                                <h3 class="text-xl font-bold">JavaScript<br>베이스캠프</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-yellow-600 text-white px-2 py-1 rounded text-xs">
+                            주디제스 워너 | 올리사리스-북클럽
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">JavaScript 베이스캠프</h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            웹 개발에서 필수 다양한 방면에서 활용할 시간부터 인기 웹 JavaScript, 기초 개념을 쉽고 정확히 학습할 수 있습니다.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-600 font-semibold">무료</span>
+                            <div class="flex space-x-2">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600">
+                                    Web-book
+                                </button>
+                                <span class="text-gray-500 text-sm">온라인 강의</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book 4 - HTML/CSS -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <div class="bg-gradient-to-br from-orange-500 to-blue-500 h-64 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <div class="text-4xl mb-4">🌐</div>
+                                <h3 class="text-xl font-bold">HTML/CSS<br>베이스캠프</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4 bg-orange-600 text-white px-2 py-1 rounded text-xs">
+                            주디제스 워너 | 올리사리스-북클럽
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">HTML/CSS 베이스캠프</h4>
+                        <p class="text-gray-600 text-sm mb-4">
+                            웹 페이지를 구축을 익히는 HTML과 웹 페이지의 스타일을 정의하는 CSS를 다루어 웹제작의 다양한 구성요소 및 있습...
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-blue-600 font-semibold">무료</span>
+                            <div class="flex space-x-2">
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600">
+                                    Web-book
+                                </button>
+                                <span class="text-gray-500 text-sm">온라인 강의</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">wenibooks</h3>
+                <p class="text-gray-400">프로그래밍 학습을 위한 최고의 도서 플랫폼</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
