@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 줄임말 유틸리티 코드 */
+        .elipse {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        main {
+            width: 80%;
+            max-width: 1400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        section.product {
+            width: calc(33.333% - 20px);
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        section.product img.thumbnail {
+            width: 100%;
+            height: auto;
+        }
+
+        section.product h2.product-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        section.product p.price {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main></main>
+    <script>
+        // 이 데이터가 웹에서 가져온 데이터라고 가정하겠습니다.
+        // 실제로는 내일 배울 fetch()를 사용하여 API에서 데이터를 가져올 수 있습니다.
+        const data = [
+                {
+                    "id": 1,
+                    "productName": "Developer Gary's bug-catching metal keyring",
+                    "price": 12500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/1/thumbnailImg.jpg",
+                },
+                {
+                    "id": 2,
+                    "productName": "U-dangtangtang licat's Laboratory Sticker Pack",
+                    "price": 3500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/2/thumbnailImg.jpg",
+                },
+                {
+                    "id": 3,
+                    "productName": "Deep Learning Developer Lap Blanket",
+                    "price": 17500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/3/thumbnailImg.jpg",
+                }
+            ]
+        const main = document.querySelector('main')
+        for (let item of data) {
+            const section = document.createElement('section')
+            section.classList.add('product')
+
+            // 코드도 짧아지고 가독성도 좋아집니다.
+            // DOM으로 일일이 컨트롤 했던 것에 비해 단점은
+            // 기존 이벤트 리스너와 같이 어떤 요소에 이벤트가 달려있었다면 텍스트로 변경되는 즉시 이 이벤트가 제거되며, 요소별 접근이 필요할 때에는 다시 querySelector를 사용해야 합니다.
+            section.innerHTML = `
+                <img src="${item.thumbnailImg}" alt="${item.productName}" class="thumbnail">
+                <h2 class="product-name elipse">${item.productName}</h2>
+                <p class="price">${item.price}원</p>
+            `;
+
+            main.append(section)
+        }
+    </script>
+</body>
+</html>

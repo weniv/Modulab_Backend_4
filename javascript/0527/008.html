@@ -1,0 +1,43 @@
+<!-- 손코딩용! -->
+<body>
+    <main></main>
+    <script>
+        const data = [
+                {
+                    "id": 1,
+                    "productName": "Developer Gary's bug-catching metal keyring",
+                    "price": 12500,
+                    "thumbnailImg": "img.jpg",
+                },
+            ]
+        const main = document.querySelector('main')
+        for (let item of data) {
+            // 요소 생성
+            const section = document.createElement('section')
+            const img = document.createElement('img')
+            const h2 = document.createElement('h2')
+            const p = document.createElement('p')
+
+            // 요소 내용 추가
+            section.classList.add('product')
+            
+            img.src = item.thumbnailImg
+            img.alt = item.productName
+            img.classList.add('thumbnail')
+            
+            h2.textContent = item.productName
+            h2.classList.add('product-name')
+            h2.classList.add('elipse')
+
+            p.textContent = item.price + '원'
+            p.classList.add('price')
+
+            // 요소 위치 추가
+            section.append(img)
+            section.append(h2)
+            section.append(p)
+
+            main.append(section)
+        }
+    </script>
+</body>

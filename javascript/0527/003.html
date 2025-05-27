@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>hello world</h1>
+    <button id="btn">클릭햇!</button>
+    <script>
+        const heading = document.querySelector('h1')
+        const btn = document.querySelector('#btn')
+        // 노드.addEventListener(이벤트이름, 함수)
+        btn.addEventListener('click', function(e){
+            alert('버튼을 클릭했습니다!')
+        })
+        heading.addEventListener('click', e => {
+            heading.style.color = 'red'
+            console.log(e)
+        })
+    </script>
+</body>
+</html>

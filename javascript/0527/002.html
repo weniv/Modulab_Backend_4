@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id="one" class="hello">hello world</h1>
+    <ul id="two" class="world">
+        <li>hello1</li>
+        <li>hello2</li>
+        <li>hello3</li>
+        <li>hello4</li>
+        <li>hello5</li>
+    </ul>
+    <script>
+        // 앞에서 탐험해봤던 것처럼
+        // 초록색 색이 칠해졌던 것처럼
+        // 실무에서는 node를 가리키는 변수는 앞에 $를 붙이기도 합니다.
+        const a = document.getElementById('one') // one의 노드를 a가 가리킴
+        const b = document.getElementById('two') // two의 노드를 b가 가리킴
+        const c = document.querySelector('#one') // one의 노드를 c가 가리킴
+        const d = document.querySelector('#two') // two의 노드를 d가 가리킴
+        const e = document.querySelector('.hello') // class가 hello인 노드를 e가 가리킴
+        const f = document.querySelector('.world') // class가 world인 노드를 f가 가리킴
+        // li가 5개인데 아래 g는 첫 번째 li 태그를 가리킴
+        const g = document.querySelector('li') // li 태그를 g가 가리킴
+        const h = document.querySelectorAll('li') // li 태그를 모두 가리킴
+
+        // 브라우저 실행한 다음 console 창에서 a, b, c, d, e, f, g, h를 입력해보세요.
+    </script>
+</body>
+</html>

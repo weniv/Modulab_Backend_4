@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <p>hello</p>
+    <script>
+        const data = [
+            { name: '키링', price: 1000 },
+            { name: '플스5', price: 500000 },
+            { name: '오븐', price: 100000 },
+            { name: '곤충채집통', price: 15000 },
+        ]
+        const p1 = document.createElement('p')
+        p1.textContent = data[0].name
+        document.body.appendChild(p1)
+
+        const p2 = document.createElement('p')
+        p2.textContent = data[1].name
+        document.body.appendChild(p2)
+
+        const p3 = document.createElement('p')
+        p3.textContent = data[2].name
+        document.body.appendChild(p3)
+
+        const p4 = document.createElement('p')
+        p4.textContent = data[3].name
+        document.body.appendChild(p4)
+
+    </script>
+    
+</body>
+</html>

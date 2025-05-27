@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 줄임말 유틸리티 코드 */
+        .elipse {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        main {
+            width: 80%;
+            max-width: 1400px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        section.product {
+            width: calc(33.333% - 20px);
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        section.product img.thumbnail {
+            width: 100%;
+            height: auto;
+        }
+
+        section.product h2.product-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        section.product p.price {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main></main>
+    <script>
+        // 이 데이터가 웹에서 가져온 데이터라고 가정하겠습니다.
+        // 실제로는 내일 배울 fetch()를 사용하여 API에서 데이터를 가져올 수 있습니다.
+        const data = [
+                {
+                    "id": 1,
+                    "productName": "Developer Gary's bug-catching metal keyring",
+                    "price": 12500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/1/thumbnailImg.jpg",
+                },
+                {
+                    "id": 2,
+                    "productName": "U-dangtangtang licat's Laboratory Sticker Pack",
+                    "price": 3500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/2/thumbnailImg.jpg",
+                },
+                {
+                    "id": 3,
+                    "productName": "Deep Learning Developer Lap Blanket",
+                    "price": 17500,
+                    "thumbnailImg": "https://dev.wenivops.co.kr/services/fastapi-crud/asset/products/img/3/thumbnailImg.jpg",
+                }
+            ]
+        const main = document.querySelector('main')
+        for (let item of data) {
+            // 요소 생성
+            const section = document.createElement('section')
+            const img = document.createElement('img')
+            const h2 = document.createElement('h2')
+            const p = document.createElement('p')
+
+            // 요소 내용 추가
+            section.classList.add('product')
+            
+            img.src = item.thumbnailImg
+            img.alt = item.productName
+            img.classList.add('thumbnail')
+            
+            h2.textContent = item.productName
+            h2.classList.add('product-name')
+            h2.classList.add('elipse')
+
+            p.textContent = item.price + '원'
+            p.classList.add('price')
+
+            // 요소 위치 추가
+            section.append(img)
+            section.append(h2)
+            section.append(p)
+
+            main.append(section)
+        }
+    </script>
+</body>
+</html>

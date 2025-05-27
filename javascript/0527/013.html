@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>캡처링과 버블링</title>
+</head>
+<body>
+    <div class="userInfo"></div>
+    <form action="">
+        <button type="submit" class="submit">제출</button>
+    </form>
+
+    <script>
+    const parent = document.querySelector('.parent');
+
+    const submit = document.querySelector('.submit');
+    submit.addEventListener('click', (event) => {
+        event.preventDefault();
+        // 통신하는 코드가 여기 있다고 가정하겠습니다.
+        console.log('clicked');
+        const data = {
+            name: 'John Doe',
+            age: 30
+        };
+        const userInfo = document.querySelector('.userInfo');
+        userInfo.innerHTML = `<p>Name: ${data.name}</p><p>Age: ${data.age}</p>`;
+    });
+    </script>
+</body>
+</html>
