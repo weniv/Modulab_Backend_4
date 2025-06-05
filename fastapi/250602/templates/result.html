@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .success { background: lightgreen; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    
+    <div class="success">
+        <p>✅ 메시지가 성공적으로 저장되었습니다!</p>
+        <p><strong>작성자:</strong> {{ name }}</p>
+        <p><strong>내용:</strong> {{ message }}</p>
+    </div>
+    
+    <p>
+        <a href="/">🏠 메인으로</a> | 
+        <a href="/write">✏️ 또 작성하기</a>
+    </p>
+</body>
+</html>

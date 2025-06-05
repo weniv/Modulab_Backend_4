@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .message { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        a { color: blue; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p>총 {{ message_count }}개의 메시지가 있습니다.</p>
+    
+    <p><a href="/write">✏️ 새 메시지 작성하기</a></p>
+    
+    {% if messages %}
+        <h2>메시지들:</h2>
+        {% for msg in messages %}
+        <div class="message">
+            <strong>{{ msg.name }}:</strong> {{ msg.message }}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>아직 메시지가 없습니다.</p>
+    {% endif %}
+</body>
+</html>
