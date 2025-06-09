@@ -1,0 +1,115 @@
+clear                # 터미널 화면을 깨끗하게 지웁니다
+mkdir leehojun       # 새로운 폴더(디렉토리)를 생성합니다
+cd leehojun          # 지정한 폴더로 이동합니다
+cd ..                # 상위 폴더로 이동합니다
+rmdir leehojun       # 빈 폴더를 삭제합니다
+echo ''>index.html   # 빈 파일을 생성합니다
+cat index.html       # 파일 내용을 화면에 출력합니다
+rm index.html        # 파일을 삭제합니다
+ls                   # 현재 폴더의 파일과 폴더 목록을 보여줍니다
+pwd                  # 현재 작업 중인 폴더의 전체 경로를 표시합니다
+tree                 # 폴더 구조를 트리 형태로 보여줍니다
+
+
+git init
+
+echo 'hello' > one.txt
+git add .
+git commit -m 'one'
+git log
+
+echo 'hello' > two.txt
+git add .
+git commit -m 'two'
+git log
+
+echo 'hello' > three.txt
+git add .
+git commit -m 'three'
+git log
+
+---
+
+git branch
+git branch a
+git branch b
+git branch c
+git branch
+
+git checkout a
+git branch
+
+echo 'a' > a.txt
+git add .
+git commit -m 'a'
+
+echo 'aa' > aa.txt
+git add .
+git commit -m 'aa'
+
+# 파일 5개 있는 것 확인!(a.txt, aa.txt, one.txt, two.txt, three.txt)
+
+---
+
+git checkout b
+git branch
+
+# 파일이!??? 3개밖에 없죠?
+
+echo 'b' > b.txt
+git add .
+git commit -m 'b'
+
+echo 'bb' > bb.txt
+git add .
+git commit -m 'bb'
+
+---
+
+git checkout c
+git branch
+
+# 파일이!??? 3개밖에 없죠?
+
+echo 'c' > c.txt
+git add .
+git commit -m 'c'
+
+echo 'cc' > cc.txt
+git add .
+git commit -m 'cc'
+
+---
+
+여기까지 하셨으면 git log도 살펴주세요.
+git log하니까 뭐가 안보이나요? a, b, c각각 commit 했던 내역 중 자신이 한 것 밖에 안보입니다.
+
+---
+
+이제 나눴으니 합쳐볼게요.
+합치기 전에 주의할 점! 지금 branch는 main이어야 합니다!
+
+git checkout main
+git branch
+
+---
+# merge하면서 창이 뜨면 창을 X 표시해서 지우면 됩니다.
+# merge하면서 터미널에 글자가 뜨면 Esc를 누른 다음 :wq 를 입력하면 merge가 됩니다.
+
+git merge a
+git log
+git merge b
+git log
+git merge c
+git log
+
+---
+
+1. git branch 를 해보면 a, b, c가 살아이 있습니다. 그래서 a, b, c를 지워야 합니다.
+2. 지울 때 주의해야 할 점은 내가 main에 있는 상태에서 지워야 합니다.
+
+---
+
+git branch -d a
+git branch -d b
+git branch -d c
