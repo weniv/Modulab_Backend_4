@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}홈 - FastAPI 채팅 앱{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>FastAPI 채팅 애플리케이션에 오신 것을 환영합니다!</h1>
+    <p>AI와 대화하며 다양한 주제에 대해 이야기해보세요.</p>
+    
+    {% if current_user %}
+        <div class="cta-buttons">
+            <a href="/chat" class="btn btn-primary">채팅 시작하기</a>
+        </div>
+    {% else %}
+        <div class="cta-buttons">
+            <a href="/register" class="btn btn-primary">회원가입</a>
+            <a href="/login" class="btn btn-secondary">로그인</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="features">
+    <h2>주요 기능</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>🤖 AI 대화</h3>
+            <p>OpenAI GPT를 활용한 자연스러운 대화</p>
+        </div>
+        <div class="feature-card">
+            <h3>💾 대화 저장</h3>
+            <p>모든 대화 내용이 안전하게 저장됩니다</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 보안</h3>
+            <p>bcrypt 해싱과 세션 기반 인증으로 안전합니다</p>
+        </div>
+        <div class="feature-card">
+            <h3>⚡ 빠른 응답</h3>
+            <p>비동기 처리로 빠른 응답 속도를 제공합니다</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

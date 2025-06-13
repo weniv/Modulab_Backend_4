@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}회원가입 - FastAPI 채팅 앱{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>회원가입</h2>
+        
+        {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <form method="post" action="/register" class="auth-form">
+            <div class="form-group">
+                <label for="username">사용자명</label>
+                <input type="text" id="username" name="username" required 
+                       placeholder="영문, 숫자, 언더스코어만 사용" 
+                       pattern="[a-zA-Z0-9_]+" 
+                       minlength="3" 
+                       maxlength="50"
+                       autofocus>
+                <small>3자 이상, 영문/숫자/언더스코어만 사용 가능</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="example@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="8자 이상의 비밀번호" 
+                       minlength="8"
+                       maxlength="100">
+                <small>최소 8자 이상</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="password_confirm">비밀번호 확인</label>
+                <input type="password" id="password_confirm" name="password_confirm" required 
+                       placeholder="비밀번호를 다시 입력하세요">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">회원가입</button>
+        </form>
+        
+        <div class="auth-links">
+            <p>이미 계정이 있으신가요? <a href="/login">로그인</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

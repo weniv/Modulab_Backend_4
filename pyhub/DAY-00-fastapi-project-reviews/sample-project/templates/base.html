@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FastAPI 채팅 앱{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">채팅 앱</a>
+            <div class="nav-links">
+                {% if current_user %}
+                    <span class="username">{{ current_user.username }}님</span>
+                    <a href="/chat">채팅</a>
+                    <form action="/logout" method="post" class="logout-form">
+                        <button type="submit">로그아웃</button>
+                    </form>
+                {% else %}
+                    <a href="/login">로그인</a>
+                    <a href="/register">회원가입</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FastAPI 채팅 애플리케이션. 모든 권리 보유.</p>
+        </div>
+    </footer>
+</body>
+</html>
