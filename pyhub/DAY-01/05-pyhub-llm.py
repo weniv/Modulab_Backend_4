@@ -12,5 +12,15 @@ llm = UpstageLLM(api_key=api_key)
 # llm = GoogleLLM()
 # llm = AnthropicLLM()
 
-reply = llm.ask("hello")
-print(reply)
+# reply = llm.ask("hello")
+# print(reply.text)  # 응답 텍스트 출력
+# print(reply.usage)  # 사용량 출력
+
+# 대화내역 리스트를 내부에서 알아서 관리합니다.
+while True:
+    human_message = input("Human : ").strip()
+    if not human_message:
+        continue
+
+    reply = llm.ask(human_message)
+    print(reply.text)
