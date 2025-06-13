@@ -1,3 +1,5 @@
+# 라이브러리 설치 : python -m pip install -U "pyhub-llm[all]"
+
 from pyhub.llm import UpstageLLM, OpenAILLM, GoogleLLM, AnthropicLLM
 
 # TODO: 각자의 업스테이지 api key를 지정해주세요.
