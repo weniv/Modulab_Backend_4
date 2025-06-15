@@ -13,6 +13,7 @@
 + [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다.
 + [ ] 장고 프로젝트를 생성하고, View/Urls/Templates/Static 의 역할을 간략하게나마 알고 연결할 수 있다.
 + [ ] HTML Form 혹은 JavaScript Fetch를 통해 HTTP 요청을 보내고 응답을 받아 화면에 적용할 수 있다.
++ [ ] `django-debug-toolbar` 를 설치하고, 디버깅 화면을 확인한다.
 
 ## 프로젝트 폴더 생성과 가상환경
 
