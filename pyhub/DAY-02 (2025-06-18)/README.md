@@ -8,6 +8,8 @@
 
 ## 오늘의 목표
 
++ [ ] [LLM_CHEATSHEETS.md](../LLM_CHEATSHEETS.md) 참고하여, 다양한 목적으로 LLM을 활용할 수 있다.
+    - 보다 많은 예시는 [pyhub-llm 치트시트](https://github.com/pyhub-kr/pyhub-llm/blob/main/CHEATSHEET.md) 참고
 + [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다.
 + [ ] 장고 프로젝트를 생성하고, View/Urls/Templates/Static 의 역할을 간략하게나마 알고 연결할 수 있다.
 + [ ] HTML Form 혹은 JavaScript Fetch를 통해 HTTP 요청을 보내고 응답을 받아 화면에 적용할 수 있다.
