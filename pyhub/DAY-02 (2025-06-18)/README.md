@@ -11,7 +11,7 @@
 
 ## 오늘의 목표
 
-+ [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다.
++ [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다. 
 + [ ] [LLM_CHEATSHEETS.md](../LLM_CHEATSHEETS.md) 참고하여, 다양한 목적으로 LLM을 활용할 수 있다.
     - 보다 많은 예시는 [pyhub-llm 치트시트](https://github.com/pyhub-kr/pyhub-llm/blob/main/CHEATSHEET.md) 참고
 + [ ] VSCode에서 파이썬 코드를 디버깅할 수 있다.
@@ -92,6 +92,11 @@ source ~/.bash_profile  # 또는 source ~/.zshrc
 ```bash
 export VARIABLE_NAME="value"
 ```
+
+### 실습 스샷
+
++ [윈도우에서 환경변수](./ENV_ON_WINDOWS.md)
++ [macOS에서 환경변수](./ENV_ON_MACOS.md)
 
 ### Python에서 환경변수 사용
 
@@ -207,4 +212,3 @@ python manage.py runserver
 
 python manage.py runserver 0.0.0.0:8888  # 0.0.0.0 주소로 8888 포트로 listen
 ```
-
