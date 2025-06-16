@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 현재 프로젝트에 활성화된 장고앱 목록
+#  - 현재 경로에 chat 앱이 있어도, 여기 목록에 없으면
+#    현재 장고 프로젝트에서 장고 앱으로서 대접받지 못합니다.
+#     ex) 앱/templates/ 자동 로딩 X
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "chat",
 ]
 
 MIDDLEWARE = [
