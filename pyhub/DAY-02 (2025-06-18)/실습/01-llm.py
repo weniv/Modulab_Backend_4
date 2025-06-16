@@ -17,5 +17,21 @@ env = Env()
 # 덮어쓸려면 overwrite=True 인자를 지정합니다.
 env.read_env(ENV_PATH, overwrite=True)
 
-import os
-print(os.environ["HELLO"])
+# 환경변수 값을 읽어서 별도의 변수에 할당
+#  - 여러 로직에서 매번 환경변수 값에 직접 접근하는 것보다
+#    환경변수 접근은 특정 로직에서만 해서
+#    그 로직에서 설정 변수를 만들고 다른 로직에서 참조토록 하면
+#    훨씬 관리성이 좋습니다.
+
+# 환경변수 값은 항상 문자열(str)
+# import os
+# UPSTAGE_API_KEY = os.environ["UPSTAGE_API_KEY"]
+
+from pyhub.llm import UpstageLLM
+
+# 내부적으로 UPSTAGE_API_KEY 환경변수 값이 있으면,
+# 자동으로 활용합니다.
+llm = UpstageLLM()
+reply = llm.ask("hello")
+print(reply)
+print(reply.usage)
