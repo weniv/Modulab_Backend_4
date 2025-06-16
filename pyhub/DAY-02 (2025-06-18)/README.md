@@ -6,12 +6,14 @@
 
 + [위니북스 Django 베이스 캠프](https://www.books.weniv.co.kr/basecamp-django)
 + [Claude Code를 통해 리서치한 Django vs FastAPI](https://claude.ai/public/artifacts/54ef9ef0-a3d9-4b29-a2a0-85b352005731)
++ [VSCode에서 Django 설정법](https://ai.pyhub.kr/setup/vscode)
 
 ## 오늘의 목표
 
++ [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다.
 + [ ] [LLM_CHEATSHEETS.md](../LLM_CHEATSHEETS.md) 참고하여, 다양한 목적으로 LLM을 활용할 수 있다.
     - 보다 많은 예시는 [pyhub-llm 치트시트](https://github.com/pyhub-kr/pyhub-llm/blob/main/CHEATSHEET.md) 참고
-+ [ ] 환경변수를 설정하고, 애플리케이션에서 활용할 수 있다.
++ [ ] VSCode에서 파이썬 코드를 디버깅할 수 있다.
 + [ ] 장고 프로젝트를 생성하고, View/Urls/Templates/Static 의 역할을 간략하게나마 알고 연결할 수 있다.
 + [ ] HTML Form 혹은 JavaScript Fetch를 통해 HTTP 요청을 보내고 응답을 받아 화면에 적용할 수 있다.
 + [ ] `django-debug-toolbar` 를 설치하고, 디버깅 화면을 확인한다.
