@@ -6,6 +6,7 @@
 
 + [위니북스 Django 베이스 캠프](https://www.books.weniv.co.kr/basecamp-django)
 + [Claude Code를 통해 리서치한 Django vs FastAPI](https://claude.ai/public/artifacts/54ef9ef0-a3d9-4b29-a2a0-85b352005731)
++ [윈도우에 파이썬 설치](https://ai.pyhub.kr/setup/python/windows#py)
 + [VSCode에서 Django 설정법](https://ai.pyhub.kr/setup/vscode)
 
 ## 오늘의 목표
