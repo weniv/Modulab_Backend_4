@@ -4,3 +4,10 @@
 django-environ
 
 pyhub-llm[all]
+
+# major, minor, bugfix
+#  - bugfix 버전이 올라가는 것은 기능이 변경되지 않아요.
+# django==5.2.0  # 정확히 같은 버전.
+django~=5.2.0  # bugfix 버전 중에 최신을 설치
+# django<=5.2.0
+# django>=5.2.0
