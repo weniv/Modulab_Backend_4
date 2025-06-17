@@ -1,10 +1,71 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>hello django</title>
-    </head>
-    <body>
-    <h1>hello django in html</h1>
+  <head>
+    <meta charset="utf-8" />
+    <title>hello django</title>
 
-    &copy; 2025. 이진석.
-</body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <h1>hello django in html</h1>
+
+      <!-- HTML은 세상 어느 언어보다 관대합니다. -->
+
+      <!-- 지원되지 않는 URL을 아래 action에 명시했음에도 인지할 수 없는 상황. -->
+      <!-- TODO: 장고는 URL Reverse 라는 기능을 통해서, URL 지정 오류를 빠르게 인식할 수 있도록 도와줍니다. -->
+
+      <!-- 페이지 전환없이, HTTP 요청을 보내고 응답을 받으실려면 JS를 쓰셔야 합니다. <= 꼭 필요한지 여부에 대한 고민이 필요 -->
+      <form action="/chat/messages/new/" method="POST" id="chat-message-form">
+        {% csrf_token %}  {# POST 요청일 때 꼭 붙여줘야함. #}
+        <input type="text" name="question" />
+        <input type="submit" value="질문" />
+      </form>
+      <script>
+        const formEl = document.querySelector("#chat-message-form");
+        formEl.addEventListener("submit", function(event) {
+            // form의 기본 submit 동작을 막고 싶어요.
+            event.preventDefault();  // HTTP 요청 X
+
+            // JSON 방식 : 파일전송 불가능.
+
+            // multipart/form-data
+            const _formEl = event.target;
+            const formData = new FormData(_formEl); // file 까지 모두 전송
+            console.log("요청을 보낼 주소 :", _formEl.action);  // 이벤트가 발생한 요소
+
+            // fetch 요청을 보내면, 현재 애플리케이션이 프리징 상태가 아니라,
+            // 요청은 요청대로 보내고, 다른 이벤트를 처리할 수 있도록 합니다.
+
+            // Promise 객체에 대해서만, then/catch 가 지원
+            /*
+            fetch(_formEl.action, {
+                method: "POST",
+                body: formData,
+            }).then((res) => {
+                console.log("#2");
+                console.log("res :", res);
+            }).catch((error) => {});
+            */
+
+            // 정상 처리 되었을 때, 반환
+            try {
+                const res = await fetch(_formEl.action, {
+                    method: "POST",
+                    body: formData,
+                });
+                console.log("res :", res);
+            } catch(error) {
+                console.error(error);
+            }
+
+            console.log("#1");
+        });
+      </script>
+
+      &copy; 2025. 이진석.
+    </main>
+  </body>
+</html>
