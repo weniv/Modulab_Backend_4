@@ -9,4 +9,11 @@ def index(request: HttpRequest) -> HttpResponse:
     # query parameters, form data, files, headers, etc.
 
     # str (html, text), image data, pdf data, streaming, etc.
-    return HttpResponse("hello django")
+
+    # html_str = "<html><head></head><body><h1>hello django in html</h1></body>"
+
+    # # return HttpResponse("hello django")  # default content type : text/html
+    # return HttpResponse(html_str)
+
+    # html도 장고 입장에서는 그냥 텍스트. 이 외에 다양한 포맷도 문자열이라면 다 가능.
+    return render(request, "chat/index.html")
