@@ -371,11 +371,10 @@
             setPieceBackground(piece, index) {
                 const row = Math.floor(index / this.gridSize);
                 const col = index % this.gridSize;
-                const pieceSize = 100 / this.gridSize;
                 
                 piece.style.backgroundImage = `url(${this.croppedImageData})`;
                 piece.style.backgroundSize = `${this.gridSize * 100}% ${this.gridSize * 100}%`;
-                piece.style.backgroundPosition = `${col * pieceSize}% ${row * pieceSize}%`;
+                piece.style.backgroundPosition = `-${col * 100}% -${row * 100}%`;
             }
 
             addPieceEventListeners(piece) {
