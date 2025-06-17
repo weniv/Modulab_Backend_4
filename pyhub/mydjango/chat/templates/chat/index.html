@@ -7,44 +7,21 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
+
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
   </head>
   <body>
     <main class="container">
       <h1>hello django in html</h1>
 
-      <!-- HTML은 세상 어느 언어보다 관대합니다. -->
-
-      <!-- 지원되지 않는 URL을 아래 action에 명시했음에도 인지할 수 없는 상황. -->
-      <!-- TODO: 장고는 URL Reverse 라는 기능을 통해서, URL 지정 오류를 빠르게 인식할 수 있도록 도와줍니다. -->
-
       <!-- 페이지 전환없이, HTTP 요청을 보내고 응답을 받으실려면 JS를 쓰셔야 합니다. <= 꼭 필요한지 여부에 대한 고민이 필요 -->
-      <form action="/chat/messages/new/" method="POST" id="chat-message-form">
+      <form hx-post="/chat/messages/new/" hx-target="#chat-response">
         {% csrf_token %}  {# POST 요청일 때 꼭 붙여줘야함. #}
         <input type="text" name="question" />
         <input type="submit" value="질문" />
       </form>
-      <script>
-        const formEl = document.querySelector("#chat-message-form");
-        formEl.addEventListener("submit", async function(event) {
-            event.preventDefault();
 
-            const _formEl = event.target;
-            const formData = new FormData(_formEl);
-
-            try {
-                const res = await fetch(_formEl.action, {
-                    method: "POST",
-                    body: formData,
-                });
-                console.log("res :", res);
-                // const obj = await res.json(); // JSON 응답일 때, 따로 JSON.parse를 안해도 된다.
-                const text = await res.text();
-                console.log("text :", text);
-            } catch(error) {
-                console.error(error);
-            }
-        });
-      </script>
+      <div id="chat-response"></div>
 
       &copy; 2025. 이진석.
     </main>
