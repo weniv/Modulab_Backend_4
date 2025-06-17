@@ -24,7 +24,7 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
     request.GET   # QueryDict 타입 (Dict 으로 보여도 90% 무방)  # POST 요청에서도 있을 수 있어요.
     request.POST  # POST 데이터 (QueryDict)
 
-    question = request.GET.get("question", "")
+    question = request.POST.get("question", "")
     if question:
         answer = f"당신의 질문 : {question}"
     else:
