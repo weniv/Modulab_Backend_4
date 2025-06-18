@@ -45,3 +45,12 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
 # query=python
 # ackey=4rvenuph
 # """
+
+
+# chat/views.py
+
+def puzzle_room(request):
+    return render(
+        request,
+        template_name="chat/puzzle.html",
+    )
