@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
-
+from chat.models import PuzzleRoom
 
 # django view : http 요청을 받아 요청을 처리하는 함수 (Function Based View, FBV)
 #   => 장고에서는 클래스로 View를 만들거예요. => 클래스 기반 뷰 (Class Based View, CBV)
@@ -45,6 +45,17 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
 # query=python
 # ackey=4rvenuph
 # """
+
+
+# TODO: 왜 puzzle_room_list가 아니라 puzzleroom_list 인가요?
+
+def puzzleroom_list(request):
+    # puzzle room 테이블에 있는 모든 레코드를 가져올 준비
+    qs = PuzzleRoom.objects.all()
+    return render(
+        request,
+        template_name="chat/puzzleroom_list.html",
+        context={ "puzzleroom_list": qs })
 
 
 # chat/views.py

@@ -1,0 +1,16 @@
+<html>
+<head>
+
+</head>
+<body>
+    <h1>퍼즐 룸</h1>
+
+    {% for room in puzzleroom_list %}
+        <div>
+            #{{ room.id }}.
+            {{ room.level }}.
+            <img src="{{ room.image_file.url }}" style="width: 200px; "/>
+        </div>
+    {% endfor %}
+</body>
+</html>

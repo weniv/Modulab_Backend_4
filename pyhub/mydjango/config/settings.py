@@ -113,6 +113,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# MEDIA_URL로 시작하는 URL 요청이 있다면
+#  요청 파일을 MEDIA_ROOT 경로에서 찾아주겠다.
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
