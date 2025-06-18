@@ -69,6 +69,14 @@ def puzzle_room(request: HttpRequest, name: str) -> HttpResponse:
         image_url = {
             "mario": "/static/chat/mario.jpg",
             "toy": "/static/chat/toy-story.jpg",
+            "openai-1": "/static/chat/openai-1.png",
+            "openai-2": "/static/chat/openai-2.png",
+            "openai-3": "/static/chat/openai-3.png",
+            "openai-4": "/static/chat/openai-4.png",
+            "openai-5": "/static/chat/openai-5.png",
+            "openai-6": "/static/chat/openai-6.png",
+            "openai-7": "/static/chat/openai-7.png",
+            "openai-8": "/static/chat/openai-8.png",
         }[name]
     except KeyError:
         # 위에서 임포트 : from django.http import Http404
