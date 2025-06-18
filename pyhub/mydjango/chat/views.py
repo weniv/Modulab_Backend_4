@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
 
 
@@ -49,8 +49,43 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
 
 # chat/views.py
 
-def puzzle_room(request):
+# chat/urls.py 에서 name 인자를 추출해서
+# View 함수 호출 시에 자동으로 인자를 전달해줍니다.
+
+def puzzle_room(request: HttpRequest, name: str) -> HttpResponse:
+
+    # 외부로부터 전달받은 값은 절대 신뢰해서는 안 됩니다.
+    # 우리가 원하는 규칙에 맞는 지, 항상 검사해야만 합니다. (중요 ** 10000000)
+
+    # 없는 데이터를 요청했는 데, 500 서버 에러로 기록되는 것은 서버 개발자는 억울합니다.
+    # 없는 데이터는 404 Page not found 응답을 하는 것이 맞습니다.
+
+    # TODO: image_url/level 설정을 View 단에 하드 코딩이 아니라
+    # 유저가 이미지와 레벨을 설정해서 게임방을 만들 수 있으면 좋겠다 !!!
+    # => 이러한 보통은 데이터베이스에 저장/수정하고 불러서 활용합니다.
+    #    보통의 애플리케이션들은 대개 데이터베이스 중심의 소프트웨어입니다.
+
+    try:
+        image_url = {
+            "mario": "/static/chat/mario.jpg",
+            "toy": "/static/chat/toy-story.jpg",
+        }[name]
+    except KeyError:
+        # 위에서 임포트 : from django.http import Http404
+        raise Http404(f"not found room : {name}")
+        # return Http404  # return 쓰시면 안 되요 !!
+
+    level = 3  # or 4, 5
+
+    # toy, mario, flower, game
     return render(
         request,
+        # 이 템플릿 내의 코드는 모두 그냥 문자열 !!!
         template_name="chat/puzzle.html",
+        # "image_url" 이라는 이름으로 image_url 값을 전달합니다.
+        # 대개 같은 이름으로 지정합니다.
+        context={
+            "image_url": image_url,
+            "level": level,
+        },
     )

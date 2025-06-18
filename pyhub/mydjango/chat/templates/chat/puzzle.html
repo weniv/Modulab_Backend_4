@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이미지 슬라이딩 퍼즐 게임</title>
+    <title>
+        이미지 슬라이딩 퍼즐 게임
+        {{ image_url }}
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .puzzle-piece {
@@ -255,8 +258,8 @@
             constructor() {
                 // 게임 설정 (하드코딩)
                 // this.imageUrl = './assets/mario.jpg';
-                this.imageUrl = '/static/chat/toy-story.jpg';
-                this.gridSize = 3; // 3x3, 4x4, 5x5 중 선택 (하드코딩)
+                this.imageUrl = '{{ image_url }}';
+                this.gridSize = {{ level }}; // 3x3, 4x4, 5x5 중 선택 (하드코딩)
 
                 // 게임 상태
                 this.pieces = [];
