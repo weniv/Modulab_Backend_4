@@ -1,5 +1,7 @@
+from urllib import request
+
 from django.http import HttpRequest, HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from chat.models import PuzzleRoom
 
 # django view : http 요청을 받아 요청을 처리하는 함수 (Function Based View, FBV)
@@ -83,3 +85,39 @@ def puzzleroom_play(request: HttpRequest, id: int) -> HttpResponse:
             "level": level,
         },
     )
+
+
+# import 코드는 소스코드 최상단에 써주세요.
+from chat.forms import PuzzleRoomForm
+
+
+# 1개의 PuzzleRoom 생성을 위해서, 최소 2번의 요청을 받을 겁니다.
+#  1) GET 요청 : 빈 입력 서식을 보여줘야 합니다.
+#  2) POST 요청 : 유저가 서식에 값을 채우고, 전송(저장)버튼을 눌렀을 때, 유저의 입력값을 전송 (반복)
+def puzzleroom_new(request: HttpRequest) -> HttpResponse:
+
+    if request.method == "GET":  # "GET" or "POST" 뿐. (항상 대문자)
+        # 1) 빈 입력 서식을 보여주겠습니다.
+        form = PuzzleRoomForm()
+
+    else:  # "POST" : 유저가 입력한 값에 대한 유효성 검사, pass(저장), fail(에러 응답)
+        # request.POST   # POST 요청에서의 데이터 (파일 제외)
+        # request.FILES  # POST 요청에서의 데이터 (파일 만)
+
+        # Form에게 유저의 모든 입력 데이터를 전달
+        form = PuzzleRoomForm(data=request.POST, files=request.FILES)
+        # form : 유저가 전달한 값을 모두 알고 있습니다. + 입력 필드 구성도 모두 알고 있습니다.
+
+        # 호출 즉시, 유효성 검사를 수행합니다.
+        # 단 1개의 유효성 검사라도 실패하면, False 반환. 모두 통과하면 True 반환
+        if form.is_valid():
+            form.save()  # 데이터베이스에 저장합니다. (ModleForm 만의 기능)
+            # TODO: 성공 메시지, 저장된 게임룸으로 즉시 이동
+            return redirect("/chat/puzzle/")  # django.shortcuts
+        else:
+            pass  # 그냥 아래 템플릿 렌더링을 합니다. + 에러 출력 기능까지 있습니다.
+
+    # 장고의 문화 대로, 파일명과 View 이름을 쓰고 있어요.
+    return render(request, "chat/puzzleroom_form.html", {
+        "form": form,
+    })

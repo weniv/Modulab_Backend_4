@@ -18,6 +18,8 @@ urlpatterns = [
     # => 엉뚱하게 예상치못한 URL 패턴까지 잡아버리는 상황을 막을 수 있어요.
     path("puzzle/<int:id>/", views.puzzleroom_play),  # ADDED
 
+    path("puzzle/new/", views.puzzleroom_new),
+
     # FastAPI
     # @app.get("/chat/puzzle/{name}")
     # def room(name: str): pass
