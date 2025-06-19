@@ -51,7 +51,7 @@ def chat_message_new(request: HttpRequest) -> HttpResponse:
 
 def puzzleroom_list(request):
     # puzzle room 테이블에 있는 모든 레코드를 가져올 준비
-    qs = PuzzleRoom.objects.all()
+    qs = PuzzleRoom.objects.all()  # QuerySet 타입
     return render(
         request,
         template_name="chat/puzzleroom_list.html",
@@ -63,38 +63,13 @@ def puzzleroom_list(request):
 # chat/urls.py 에서 name 인자를 추출해서
 # View 함수 호출 시에 자동으로 인자를 전달해줍니다.
 
-def puzzle_room(request: HttpRequest, name: str) -> HttpResponse:
+def puzzleroom_play(request: HttpRequest, id: int) -> HttpResponse:
 
-    # 외부로부터 전달받은 값은 절대 신뢰해서는 안 됩니다.
-    # 우리가 원하는 규칙에 맞는 지, 항상 검사해야만 합니다. (중요 ** 10000000)
+    # id 값을 통해서, 아래 값을 찾아서 할당을 할 겁니다.
 
-    # 없는 데이터를 요청했는 데, 500 서버 에러로 기록되는 것은 서버 개발자는 억울합니다.
-    # 없는 데이터는 404 Page not found 응답을 하는 것이 맞습니다.
-
-    # TODO: image_url/level 설정을 View 단에 하드 코딩이 아니라
-    # 유저가 이미지와 레벨을 설정해서 게임방을 만들 수 있으면 좋겠다 !!!
-    # => 이러한 보통은 데이터베이스에 저장/수정하고 불러서 활용합니다.
-    #    보통의 애플리케이션들은 대개 데이터베이스 중심의 소프트웨어입니다.
-
-    try:
-        image_url = {
-            "mario": "/static/chat/mario.jpg",
-            "toy": "/static/chat/toy-story.jpg",
-            "openai-1": "/static/chat/openai-1.png",
-            "openai-2": "/static/chat/openai-2.png",
-            "openai-3": "/static/chat/openai-3.png",
-            "openai-4": "/static/chat/openai-4.png",
-            "openai-5": "/static/chat/openai-5.png",
-            "openai-6": "/static/chat/openai-6.png",
-            "openai-7": "/static/chat/openai-7.png",
-            "openai-8": "/static/chat/openai-8.png",
-        }[name]
-    except KeyError:
-        # 위에서 임포트 : from django.http import Http404
-        raise Http404(f"not found room : {name}")
-        # return Http404  # return 쓰시면 안 되요 !!
-
-    level = 3  # or 4, 5
+    room = PuzzleRoom.objects.get(id=id)
+    image_url = room.image_file.url
+    level = room.level
 
     # toy, mario, flower, game
     return render(

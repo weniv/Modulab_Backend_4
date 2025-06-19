@@ -9,7 +9,25 @@
         <div>
             #{{ room.id }}.
             {{ room.level }}.
-            <img src="{{ room.image_file.url }}" style="width: 200px; "/>
+
+            {# 장고 템플릿 주석 #}
+            {% comment %}
+                여러 줄 주석
+            {% endcomment %}
+
+            <!-- html 주석 -->
+
+            <script>
+                // 자바스크립트 1줄 주석
+                /* 자바스크립트 여러 주석 */
+            </script>
+
+            {# 장고 템플릿의 주석 문법 : 1줄만 될 뿐, 2줄 이상은 주석으로 동작안해요. #}
+            {# URL을 지정하는 거의 모든 곳에서는 같은 서버로 요청을 보냅니다. #}
+            {# 그러니까 http://서버주소:포트 를 지정하실 필요가 전혀 없어요. #}
+            <a href="/chat/puzzle/{{ room.id }}/">
+                <img src="{{ room.image_file.url }}" style="width: 200px; "/>
+            </a>
         </div>
     {% endfor %}
 </body>
