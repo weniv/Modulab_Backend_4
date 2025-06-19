@@ -2,7 +2,9 @@ from urllib import request
 
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render, redirect
+from chat.forms import PuzzleRoomForm, PuzzleRoomEditForm
 from chat.models import PuzzleRoom
+
 
 # django view : http 요청을 받아 요청을 처리하는 함수 (Function Based View, FBV)
 #   => 장고에서는 클래스로 View를 만들거예요. => 클래스 기반 뷰 (Class Based View, CBV)
@@ -87,10 +89,6 @@ def puzzleroom_play(request: HttpRequest, id: int) -> HttpResponse:
     )
 
 
-# import 코드는 소스코드 최상단에 써주세요.
-from chat.forms import PuzzleRoomForm
-
-
 # 1개의 PuzzleRoom 생성을 위해서, 최소 2번의 요청을 받을 겁니다.
 #  1) GET 요청 : 빈 입력 서식을 보여줘야 합니다.
 #  2) POST 요청 : 유저가 서식에 값을 채우고, 전송(저장)버튼을 눌렀을 때, 유저의 입력값을 전송 (반복)
@@ -128,10 +126,10 @@ def puzzleroom_edit(request: HttpRequest, id: int) -> HttpResponse:
     room = PuzzleRoom.objects.get(id=id)
 
     if request.method == "GET":
-        form = PuzzleRoomForm(instance=room)
+        form = PuzzleRoomEditForm(instance=room)
 
     else:
-        form = PuzzleRoomForm(instance=room, data=request.POST, files=request.FILES)
+        form = PuzzleRoomEditForm(instance=room, data=request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/chat/puzzle/")
