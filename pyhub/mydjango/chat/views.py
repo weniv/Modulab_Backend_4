@@ -121,3 +121,21 @@ def puzzleroom_new(request: HttpRequest) -> HttpResponse:
     return render(request, "chat/puzzleroom_form.html", {
         "form": form,
     })
+
+
+def puzzleroom_edit(request: HttpRequest, id: int) -> HttpResponse:
+    # 수정 대상을 데이터베이스에서 조회
+    room = PuzzleRoom.objects.get(id=id)
+
+    if request.method == "GET":
+        form = PuzzleRoomForm(instance=room)
+
+    else:
+        form = PuzzleRoomForm(instance=room, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("/chat/puzzle/")
+
+    return render(request, "chat/puzzleroom_form.html", {
+        "form": form,
+    })

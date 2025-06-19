@@ -20,6 +20,8 @@ urlpatterns = [
 
     path("puzzle/new/", views.puzzleroom_new),
 
+    path("puzzle/<int:id>/edit/", views.puzzleroom_edit),
+
     # FastAPI
     # @app.get("/chat/puzzle/{name}")
     # def room(name: str): pass
