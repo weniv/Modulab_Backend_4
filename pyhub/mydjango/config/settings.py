@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # third apps
     'debug_toolbar',
     # local apps
+    'blog',
     'chat',
 ]
 
