@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>PuzzleRoom Form</title>
+</head>
+<body>
+    <h1>PuzzleRoom Form</h1>
+
+    {# form novalidate 속성 : 브라우저에게 유효성 검사 하지마. 라고 지시. #}
+    <form action="" method="post"
+          enctype="multipart/form-data"
+          novalidate>
+        {# 장고 템플릿 태그 중에 csrf_token 호출 #}
+        {# 장고 템플릿 태그/필터 : 템플릿 내에서 사용하는 함수 #}
+        {% csrf_token %}
+
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" />
+    </form>
+
+</body>
+</html>
