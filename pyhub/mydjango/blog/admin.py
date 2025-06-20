@@ -18,4 +18,6 @@ from .models import Post
 # 세번째 방법
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "status"]
+    search_fields = ["title"]
+    list_filter = ["status"]
