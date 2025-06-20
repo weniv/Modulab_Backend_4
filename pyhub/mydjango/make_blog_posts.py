@@ -31,33 +31,27 @@ llm = OpenAILLM(
     """,
     max_tokens=8000,  # default: 1000 (최대: ??)
 )
-reply = llm.ask("대전 성심당 튀김소보로", schema=BlogPost)
-print(reply)
-blog_post: BlogPost = reply.structured_data
-# blog_post.title  # str
-# blog_post.content  # str
 
-post = Post()
-post.title = blog_post.title
-post.content = blog_post.content
-post.save()
+keywords = [
+    "대전 성심당 튀김 소보로",
+    "부산 돼지국밥",
+    "춘천 커피",
+]
 
-print("saved post #", post.id)
+for keyword in keywords:
+    reply = llm.ask(
+        keyword,
+        schema=BlogPost,
+        # pyhub-llm 내부에서 자동으로 대화내역을 관리합니다.
+        # 현재의 요청은 대화내역 관리가 필요없으므로, 이 옵션을 지정해주세요.
+        use_history=False,
+    )
+    print(reply)
+    blog_post: BlogPost = reply.structured_data
 
-# print(reply.structured_data.title)
-# print(reply.structured_data.content)
+    post = Post()
+    post.title = blog_post.title
+    post.content = blog_post.content
+    post.save()
 
-# title = reply.text.splitlines()[0]
-# content = "\n".join(reply.text.splitlines()[1:])
-
-# Post 임포트 하시고 나서
-# Post.objects.create(title=title, content=content)  # 수행하시면, 데이터베이스에 저장이 됩니다.
-
-# print("# title :", title)
-# print("----")
-# print(content)
-
-# print(reply.text)  # str 타입 : 제목과 내용이 붙어나옵니다.
-
-# qs = Post.objects.all()
-# print("posts :", qs)
+    print("saved post #", post.id)
