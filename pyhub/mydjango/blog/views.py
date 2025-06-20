@@ -21,6 +21,10 @@ post_detail = DetailView.as_view(
     model=Post,
 )
 
+# def post_detail(request, pk):
+#     post = Post.objects.get(pk=pk)
+#     return render(request, "blog/post_detail.html", {"post": post})
+
 # 생성 : 모델 클래스, 폼 클래스
 
 # 수정 : 모델 클래스, 폼 클래스
