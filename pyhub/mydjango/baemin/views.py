@@ -1,7 +1,7 @@
 # baemin/views.py
 
 from django.shortcuts import render
-from .models import Shop
+from .models import Shop, Review
 from .forms import ReviewForm
 
 
@@ -26,10 +26,16 @@ def shop_detail(request, pk):
     # DB에서 조회했습니다.
     shop = Shop.objects.get(pk=pk)    # 이 필드명 지정이 좀 더 정확한 네이밍.
     # shop = Shop.objects.get(id=pk)  # 위와 동일한 동작
+
+    # 전체(모든 Shop) 리뷰 데이터를 가져올 준비.
+    review_qs = Review.objects.all()
+    # 특정 shop의 리뷰 데이터를 가져올 준비 (가져올 범위가 좁혀집니다.)
+    review_qs = review_qs.filter(shop=shop)
+
     return render(
         request,
         template_name="baemin/shop_detail.html",
-        context={"shop": shop},
+        context={"shop": shop, "review_list": review_qs},
     )
 
 # TODO: baemin/shop_detail.html 템플릿을 만들어보기.
