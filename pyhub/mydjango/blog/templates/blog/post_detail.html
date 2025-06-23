@@ -18,5 +18,10 @@
     {# 장고 템플릿 필터 #}
     {{ post.content | linebreaks }}
 
+    <hr />
+
+    {# 이 URL에 오타가 있으면 안 되요. #}
+    <a href="/blog/{{ post.id }}/comments/new/">댓글 쓰기</a>
+
 </body>
 </html>

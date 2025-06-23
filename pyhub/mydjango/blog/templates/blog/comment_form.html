@@ -15,6 +15,10 @@
         {% csrf_token %}
 
         <table>
+            {# 폼 필드 스타일링 #}
+            {#  1) 직접 HTML 구성 #}
+            {#  2) form 필드를 하나씩 직접 활용 #}
+            {#  3) django-bootstrap5, django-crispy-forms 라이브러리를 활용 #}
             {{ form.as_table }}
         </table>
         <input type="submit" />
