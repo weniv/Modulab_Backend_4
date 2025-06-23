@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="lp">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+
+<h1>baemin/shop_list.html</h1>
+
+{% for shop in shop_list %}
+    <div>
+        <a href="/baemin/{{ shop.pk }}/">
+            {{ shop.name }}
+        </a>
+        {{ shop.description }}
+        <img src="{{ shop.photo.url }}" style="width: 100px;" />
+    </div>
+{% endfor %}
+
+</body>
+
+</html>
