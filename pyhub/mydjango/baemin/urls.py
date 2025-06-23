@@ -1,0 +1,3 @@
+# baemin/urls.py
+
+urlpatterns = []
