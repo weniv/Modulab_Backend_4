@@ -2,6 +2,7 @@
 
 from django.shortcuts import render
 from .models import Shop
+from .forms import ReviewForm
 
 
 # 최신의 가게 목록 페이지를 보여줄 거예요.
@@ -34,5 +35,16 @@ def shop_detail(request, pk):
 # TODO: baemin/shop_detail.html 템플릿을 만들어보기.
 
 
-# def shop_new(request):
-#     pass
+def review_new(request, shop_pk):
+    if request.method == "GET":
+        form = ReviewForm()
+
+    else:
+        form = ReviewForm(data=request.POST, files=request.FILES)
+        # TODO: ...
+
+    return render(
+        request,
+        template_name="baemin/review_form.html",
+        context={"form": form},
+    )
