@@ -1,6 +1,6 @@
 # baemin/views.py
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Shop, Review
 from .forms import ReviewForm
 
@@ -42,12 +42,22 @@ def shop_detail(request, pk):
 
 
 def review_new(request, shop_pk):
+    shop = Shop.objects.get(pk=shop_pk)  # form 시작할 때, 지정 pk의 Shop의 존재 유무를 확인.
+
     if request.method == "GET":
         form = ReviewForm()
 
     else:
         form = ReviewForm(data=request.POST, files=request.FILES)
-        # TODO: ...
+        if form.is_valid():  # 유효성 검사 수행 !!!
+
+            # commit=False 를 지정해서, form.save 내부에서 model.save 가 호출되지 않도록.
+            unsaved_review: Review = form.save(commit=False)  # 입력받은 폼 필드 값으로 데이터베이스로의 저장을 시도 !!!
+            unsaved_review.shop = shop  # Shop Instance
+            unsaved_review.save()
+
+            next_url = f"/baemin/{shop_pk}/"
+            return redirect(next_url)  # django view 함수에서만 씁니다. 브라우저에게 이 주소로 이동하세요.
 
     return render(
         request,
