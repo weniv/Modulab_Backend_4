@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third apps
     'debug_toolbar',
+    'django_bootstrap5',
     # local apps
     'baemin',
     'blog',
