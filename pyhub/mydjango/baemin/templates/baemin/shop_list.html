@@ -1,24 +1,14 @@
-<!doctype html>
-<html lang="lp">
-<head>
-    <meta charset="UTF-8" />
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-</head>
-<body>
+{% extends "baemin/base.html" %}
+{% load django_bootstrap5 %}
 
-<h1>baemin/shop_list.html</h1>
-
-{% for shop in shop_list %}
-    <div>
-        <a href="/baemin/{{ shop.pk }}/">
-            {{ shop.name }}
-        </a>
-        {{ shop.description }}
-        <img src="{{ shop.photo.url }}" style="width: 100px;" />
-    </div>
-{% endfor %}
-
-</body>
-
-</html>
+{% block content %}
+    {% for shop in shop_list %}
+        <div>
+            <a href="/baemin/{{ shop.pk }}/">
+                {{ shop.name }}
+            </a>
+            {{ shop.description }}
+            <img src="{{ shop.photo.url }}" style="width: 100px;" />
+        </div>
+    {% endfor %}
+{% endblock %}
