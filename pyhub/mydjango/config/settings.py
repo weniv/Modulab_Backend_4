@@ -21,7 +21,10 @@ SECRET_KEY = 'django-insecure-m@g-y7f$et_l1tqy69fj6$q-l02iqj_ve&)y5#9gzr7*jw%v4)
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "127.0.0.1",
     "192.168.10.203",  # 여러분들의 아이피 (사설 or 공인)
+    # "206b-14-51-24-83.ngrok-free.app",
+    ".ngrok-free.app",
 ]
 
 
@@ -150,3 +153,8 @@ UPSTAGE_API_KEY = env.str('UPSTAGE_API_KEY', default=None)
 #  - 장고 서버를 구동한 컴퓨터에서 직접 접속했을 때에만 DDT를 보여주겠다.
 #  - 다른 컴퓨터에서 접속했을 때에는 DDT가 보여지지 않아요.
 INTERNAL_IPS = ["127.0.0.1"]
+
+# DDT 추가 설정
+#  - 기본 구성으로는 INTERNAL_IPS에 지정된 주소로 접속했을 때에 무조건 DDT 보여줍니다.
+#  - 커스텀으로 파이썬 함수를 통해 보여줄 지 말지를 결정해줄 수 있어요.
+#    ngrok 을 통한 요청인지 여부를 판단해서, 결정해줄 수 있을 듯 합니다.
