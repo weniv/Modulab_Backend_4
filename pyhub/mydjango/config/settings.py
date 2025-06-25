@@ -20,12 +20,11 @@ SECRET_KEY = 'django-insecure-m@g-y7f$et_l1tqy69fj6$q-l02iqj_ve&)y5#9gzr7*jw%v4)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "192.168.10.203",  # 여러분들의 아이피 (사설 or 공인)
-    # "206b-14-51-24-83.ngrok-free.app",
-    ".ngrok-free.app",
-]
+# 환경변수 문자열에서 콤마(,)를 구분자로 해서, 리스트로 자동 변환
+ALLOWED_HOSTS = env.list(
+    "ALLOWED_HOSTS",
+    default=["127.0.0.1"],
+)
 
 
 # Application definition
