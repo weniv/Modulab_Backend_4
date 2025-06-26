@@ -2,6 +2,7 @@
 from urllib import request
 
 from django.contrib import messages
+from django.http import HttpRequest, HttpResponse
 # from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
@@ -126,3 +127,20 @@ def review_edit(request, shop_pk, pk):
         template_name="baemin/review_form.html",
         context={"form": form},
     )
+
+
+# 장고 스타일의 삭제 방식
+#  1) GET 요청 : 삭제를 요청했을 때 -> 확인 과정을 거칩니다. (정말 삭제하시겠습니까?)
+#  2) POST 요청 : 삭제 확인 (confirm) -> 삭제를 합니다.
+def review_delete(request: HttpRequest, shop_pk: int, pk: int) -> HttpResponse:
+    if request.method == "GET":
+        return render(request,
+                      template_name="baemin/review_confirm_delete.html")
+
+    review = get_object_or_404(Review, pk=pk)
+    review.delete()  # 데이터베이스에서 호출 즉시 삭제됩니다.
+
+    messages.success(request, "지정 리뷰를 삭제했습니다.")
+
+    shop_url = f"/baemin/{shop_pk}/"
+    return redirect(shop_url)
