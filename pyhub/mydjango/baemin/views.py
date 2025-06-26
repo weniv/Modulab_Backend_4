@@ -2,7 +2,8 @@
 from urllib import request
 
 from django.contrib import messages
-from django.shortcuts import render, redirect
+# from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shop, Review
 from .forms import ReviewForm
 
@@ -26,7 +27,8 @@ def shop_list(request):
 
 def shop_detail(request, pk):
     # DB에서 조회했습니다.
-    shop = Shop.objects.get(pk=pk)    # 이 필드명 지정이 좀 더 정확한 네이밍.
+    # shop = Shop.objects.get(pk=pk)    # 이 필드명 지정이 좀 더 정확한 네이밍.
+    shop = get_object_or_404(Shop, pk=pk)
     # shop = Shop.objects.get(id=pk)  # 위와 동일한 동작
 
     # 정렬 (sort) : 정렬 기준으로 2개 이상 둘 수도 있습니다.
@@ -60,7 +62,8 @@ def shop_detail(request, pk):
 
 
 def review_new(request, shop_pk):
-    shop = Shop.objects.get(pk=shop_pk)  # form 시작할 때, 지정 pk의 Shop의 존재 유무를 확인.
+    # shop = Shop.objects.get(pk=shop_pk)  # form 시작할 때, 지정 pk의 Shop의 존재 유무를 확인.
+    shop = get_object_or_404(Shop, pk=shop_pk)
 
     if request.method == "GET":
         form = ReviewForm()
@@ -90,7 +93,20 @@ def review_new(request, shop_pk):
 
 
 def review_edit(request, shop_pk, pk):
-    review = Review.objects.get(pk=pk)
+    # 모델클래스.object => Model Manager
+    #  .all
+    #  .get
+    #  .filter
+    #  .exclude
+    #  .order_by
+
+    # 지정 조건의 레코드가 DB에 없을 때 Review.DoesNotExist 예외가 발생합니다.
+    # try:
+    #     review = Review.objects.get(pk=pk)  # 지정 조건의 레코드가 데이터베이스가 1개 있어야 한다.
+    # except Review.DoesNotExist:
+    #     raise Http404
+
+    review = get_object_or_404(Review, pk=pk)
 
     if request.method == "GET":
         form = ReviewForm(instance=review)
