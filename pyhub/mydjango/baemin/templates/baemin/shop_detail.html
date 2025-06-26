@@ -9,14 +9,21 @@
     <hr />
 
     <a href="/baemin/">목록으로</a>
-    <a href="/baemin/{{ shop.pk }}/reviews/new/">댓글 쓰기</a>
+    <a href="/baemin/{{ shop.pk }}/reviews/new/">리뷰 쓰기</a>
 
-    <h3>댓글 목록</h3>
+    <h3>리뷰 목록</h3>
 
     {% for review in review_list %}
         <div>
             {{ review.content }}
             ({{ review.rating }})
+
+            {# a태그를 바로 작성하지 않고, URL을 먼저 작성하는 이유는 #}
+            {# 대개, URL 작성에서 오류가 발생하시는 분들이 많습니다. 인자 지정에 오타 등의 이유. #}
+            <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/edit/">
+                Edit
+            </a>
+            Delete
         </div>
     {% empty %}
         <div>등록된 리뷰가 없습니다. :-(</div>

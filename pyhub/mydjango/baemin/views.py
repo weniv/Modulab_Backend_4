@@ -87,3 +87,26 @@ def review_new(request, shop_pk):
         template_name="baemin/review_form.html",
         context={"form": form},
     )
+
+
+def review_edit(request, shop_pk, pk):
+    review = Review.objects.get(pk=pk)
+
+    if request.method == "GET":
+        form = ReviewForm(instance=review)
+
+    else:
+        form = ReviewForm(instance=review, data=request.POST, files=request.FILES)
+        if form.is_valid():  # 유효성 검사 수행 !!!
+            # 리뷰 수정 시에는 ReviewForm 클래스 안에서 정의된 필드에 대해서만 저장되어도 OK.
+            form.save()
+            messages.success(request, "리뷰가 수정되었습니다. ;)")
+
+            next_url = f"/baemin/{shop_pk}/"
+            return redirect(next_url)  # django view 함수에서만 씁니다. 브라우저에게 이 주소로 이동하세요.
+
+    return render(
+        request,
+        template_name="baemin/review_form.html",
+        context={"form": form},
+    )
