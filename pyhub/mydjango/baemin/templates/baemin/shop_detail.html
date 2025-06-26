@@ -14,7 +14,7 @@
     <h3>리뷰 목록</h3>
 
     {% for review in review_list %}
-        <div>
+        <div class="review-wrap">
             {{ review.content }}
             ({{ review.rating }})
 
@@ -23,11 +23,37 @@
             <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/edit/">
                 Edit
             </a>
-            <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/delete/">
+            <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/delete/"
+               class="btn-review-delete text-danger"
+            >
                 Delete
             </a>
         </div>
     {% empty %}
         <div>등록된 리뷰가 없습니다. :-(</div>
     {% endfor %}
+
+    <script>
+      const reviewWrapList = document.querySelectorAll(".review-wrap");
+      /* for el in reviewWrapList */
+      reviewWrapList.forEach((wrapEl) => {
+        console.log("wrapEl :", wrapEl);
+        const deleteBtnEl = wrapEl.querySelector(".btn-review-delete");
+        // deleteBtnEl; // <a> 요소를 클릭했을 때의 기본 동작은 지정 href 주소로 페이지 이동
+        deleteBtnEl.addEventListener("click", function(event) {
+          event.preventDefault();  // 현재 이벤트 발생 요소의 기본 동작을 취소합니다.
+
+          // click에 대한 이벤트 리스너 (event listener)
+          // console.log('clicked :', event);
+
+          if ( confirm("정말 삭제하시겠습니까?") ) {
+            // 유저가 OK(확인)했다면?
+            // TODO: 지정 주소로 POST 요청을 보냅니다. (삭제 요청)
+            // TODO: 삭제됨 응답을 받으면, window.location.reload(); 새로고침을 해도 되고.
+            // JS로 지정 wrapEl을 delete해도 됩니다.
+            wrapEl.remove();
+          }
+        });
+      });
+    </script>
 {% endblock %}
