@@ -1,4 +1,5 @@
 # baemin/views.py
+from urllib import request
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -28,10 +29,26 @@ def shop_detail(request, pk):
     shop = Shop.objects.get(pk=pk)    # 이 필드명 지정이 좀 더 정확한 네이밍.
     # shop = Shop.objects.get(id=pk)  # 위와 동일한 동작
 
+    # 정렬 (sort) : 정렬 기준으로 2개 이상 둘 수도 있습니다.
+    # 각 정렬은 오름차순, 내림차순을 지정할 수 있어요.
+    # 그런데, 가급적 정렬 기준 컬럼은 1개만 지정하시기를 권장드립니다.
+    #  - 데이터가 적으면 (몇 천개) 아무 상관없습니다.
+    #  - 데이터베이스 정렬을 요청받으면, 정렬을 모두 한 후에 정렬된 목록을 응답하죠.
+    #    정렬 기준이 여러 개면, 정렬을 여러번 하면 그 만큼 시간이 오래 걸립니다.
+    #  - 대개의 경우, 정렬은 1개 기준이면 충분.
+
     # 전체(모든 Shop) 리뷰 데이터를 가져올 준비.
     review_qs = Review.objects.all()
     # 특정 shop의 리뷰 데이터를 가져올 준비 (가져올 범위가 좁혀집니다.)
     review_qs = review_qs.filter(shop=shop)
+
+    # 정렬을 지정하지 않아도 출력은 되는 데요? 지정하지 않으면 오름차순인가요?? - NO !!!
+    #  - 저장된 순서대로 조회될 뿐입니다.
+    #  - 조회할 때마다 다른 순서로 조회가 될 수도 있습니다.
+
+    # 정렬을 지정하면, 항상 일관된 순서로 조회가 됩니다.
+    review_qs = review_qs.order_by("-id")  # id 필드 내림차순
+    # review_qs = review_qs.order_by("id")  # id 필드 오름차순
 
     return render(
         request,
