@@ -1,5 +1,6 @@
 # baemin/views.py
 
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import Shop, Review
 from .forms import ReviewForm
@@ -55,6 +56,11 @@ def review_new(request, shop_pk):
             unsaved_review: Review = form.save(commit=False)  # 입력받은 폼 필드 값으로 데이터베이스로의 저장을 시도 !!!
             unsaved_review.shop = shop  # Shop Instance
             unsaved_review.save()
+
+            # 한국어를 쓰는 사람을 대상으로만 하는 서비스니까, 메시지는 한국어로 쓰셔도 됩니다.
+            # 만약 영어 등 다국어를 지원해야한다면, 메시지를 쓰는 방법이 조금 달라요.
+            messages.success(request, "고객님의 리뷰에 감사드립니다. ;)")
+            # 위 메시지는 요청을 한 유저에게만 보여질 거예요.
 
             next_url = f"/baemin/{shop_pk}/"
             return redirect(next_url)  # django view 함수에서만 씁니다. 브라우저에게 이 주소로 이동하세요.
