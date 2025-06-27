@@ -1,6 +1,4 @@
 # baemin/views.py
-from urllib import request
-
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 # from django.http import Http404
@@ -10,11 +8,27 @@ from .models import Shop, Review
 from .forms import ReviewForm
 
 
+class ShopListView(ListView):
+    model = Shop
+    paginate_by = 5
+
+    # 아래 설정이 디폴트 설정
+    # template_name = "baemin/shop_list.html"
+    # 요청에 따라, 사용하는 템플릿을 변경해봅시다.
+
+    # 부모 클래스의 get_template_names 메서드를 재정의 (override)
+    def get_template_names(self):
+        # 클래스 기반 뷰는 현재 요청 객체 : self.request
+        if "naked" in self.request.GET:  # dict에서 해당 Key가 사전에 있는 지만 확인
+            # 무한스크롤에서 다음 페이지 내용이라면?
+            return "baemin/_shop_list.html"  # !!!
+
+        # 아래의 코드는 원래 메서드의 기본 동작을 수행
+        return super().get_template_names()
+
+
 # 클래스를 통해서 새로운 뷰 함수를 생성을 합니다.
-shop_list = ListView.as_view(
-    model=Shop,
-    paginate_by=5,
-)
+shop_list = ShopListView.as_view()  # 코드라기보다, 설정에 가까운 코드.
 
 # 최신의 가게 목록 페이지를 보여줄 거예요.
 #  - 최신의 데이터는 DB 안에 있죠. 그러니 매번 DB 조회를 할 겁니다.

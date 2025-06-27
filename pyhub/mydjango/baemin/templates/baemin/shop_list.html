@@ -1,18 +1,5 @@
 {% extends "baemin/base.html" %}
-{% load django_bootstrap5 %}
 
 {% block content %}
-    {% for shop in shop_list %}
-        <div>
-            <a href="/baemin/{{ shop.pk }}/">
-                {{ shop.name }}
-            </a>
-            {{ shop.description }}
-            <img src="{{ shop.photo.url }}" style="width: 100px;" />
-        </div>
-    {% endfor %}
-
-    <hr />
-    {% bootstrap_pagination page_obj %}
-
+    {% include "baemin/_shop_list.html" %}
 {% endblock %}
