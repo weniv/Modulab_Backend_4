@@ -5,38 +5,43 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 # from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView
 from .models import Shop, Review
 from .forms import ReviewForm
 
 
+# 클래스를 통해서 새로운 뷰 함수를 생성을 합니다.
+shop_list = ListView.as_view(
+    model=Shop,
+    paginate_by=5,
+)
+
 # 최신의 가게 목록 페이지를 보여줄 거예요.
 #  - 최신의 데이터는 DB 안에 있죠. 그러니 매번 DB 조회를 할 겁니다.
-def shop_list(request):
-    # 데이터베이스에서 baemin_shop 테이블의 모든 레코드를
-    # 조회할 준비 (아직 데이터를 가져오진 않았습니다.)
-    qs = Shop.objects.all()  # QuerySet
-    # qs = qs.order_by('-id')  # 매번 정렬을 지정해주실 수도 있겠지만.
-
-    # page = 2
-    page = int(request.GET.get("page", 1))  # 쿼리스트링 값은 기본적으로 문자열 타입
-    paginate_by = 5  # 1페이지를 몇 개씩 끊을 거냐?
-
-    # qs = qs[0:5]  # 1페이지 : 처음 5개 (리스트/문자열의 슬라이싱 문법과 동일)
-    # qs = qs[5:10]  # 2페이지
-    # qs = qs[10:15]  # 3페이지
-
-    start_index = (page - 1) * paginate_by
-    end_index = page * paginate_by
-    qs = qs[start_index:end_index]
-
-    return render(
-        request,
-        template_name="baemin/shop_list.html",
-        context={
-            "shop_list": qs,
-        })
-
-# TODO: baemin/shop_list.html 템플릿을 만들어보기. 하얀 배경도 OK. chatgpt 등을 통한 코드 생성도 OK.
+# def shop_list(request):
+#     # 데이터베이스에서 baemin_shop 테이블의 모든 레코드를
+#     # 조회할 준비 (아직 데이터를 가져오진 않았습니다.)
+#     qs = Shop.objects.all()  # QuerySet
+#     # qs = qs.order_by('-id')  # 매번 정렬을 지정해주실 수도 있겠지만.
+#
+#     # page = 2
+#     page = int(request.GET.get("page", 1))  # 쿼리스트링 값은 기본적으로 문자열 타입
+#     paginate_by = 5  # 1페이지를 몇 개씩 끊을 거냐?
+#
+#     # qs = qs[0:5]  # 1페이지 : 처음 5개 (리스트/문자열의 슬라이싱 문법과 동일)
+#     # qs = qs[5:10]  # 2페이지
+#     # qs = qs[10:15]  # 3페이지
+#
+#     start_index = (page - 1) * paginate_by
+#     end_index = page * paginate_by
+#     qs = qs[start_index:end_index]
+#
+#     return render(
+#         request,
+#         template_name="baemin/shop_list.html",
+#         context={
+#             "shop_list": qs,
+#         })
 
 
 def shop_detail(request, pk):
@@ -71,8 +76,6 @@ def shop_detail(request, pk):
         template_name="baemin/shop_detail.html",
         context={"shop": shop, "review_list": review_qs},
     )
-
-# TODO: baemin/shop_detail.html 템플릿을 만들어보기.
 
 
 def review_new(request, shop_pk):
