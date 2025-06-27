@@ -42,6 +42,7 @@ def make_validator_min(min_value):
 
 # N 측에 1에 대한 외래키 필드를 추가
 class Review(models.Model):
+    # user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     content = models.TextField()
     # rating = models.IntegerField()  # 음수/양수 다 담을 수 있어요.

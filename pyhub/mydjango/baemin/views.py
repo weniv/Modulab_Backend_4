@@ -92,6 +92,10 @@ def shop_detail(request, pk):
     )
 
 
+# .user 속성을 할당할려면, 반드시 로그인 상태에서만 리뷰 폼이 보여져야 합니다.
+# from django.contrib.auth.decorators import login_required
+
+# @login_required  # 로그인 상황이 아니면, 자동으로 로그인 페이지로 보냅니다.
 def review_new(request, shop_pk):
     # shop = Shop.objects.get(pk=shop_pk)  # form 시작할 때, 지정 pk의 Shop의 존재 유무를 확인.
     shop = get_object_or_404(Shop, pk=shop_pk)
@@ -106,6 +110,7 @@ def review_new(request, shop_pk):
             # commit=False 를 지정해서, form.save 내부에서 model.save 가 호출되지 않도록.
             unsaved_review: Review = form.save(commit=False)  # 입력받은 폼 필드 값으로 데이터베이스로의 저장을 시도 !!!
             unsaved_review.shop = shop  # Shop Instance
+            # unsaved_review.user = request.user  # 현재 로그인 User 인스턴스
             unsaved_review.save()
 
             # 한국어를 쓰는 사람을 대상으로만 하는 서비스니까, 메시지는 한국어로 쓰셔도 됩니다.
