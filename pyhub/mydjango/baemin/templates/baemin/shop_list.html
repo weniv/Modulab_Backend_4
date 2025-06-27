@@ -11,4 +11,8 @@
             <img src="{{ shop.photo.url }}" style="width: 100px;" />
         </div>
     {% endfor %}
+
+    <hr />
+    {% bootstrap_pagination page_obj %}
+
 {% endblock %}
