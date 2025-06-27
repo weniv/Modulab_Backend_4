@@ -15,6 +15,19 @@ def shop_list(request):
     # 데이터베이스에서 baemin_shop 테이블의 모든 레코드를
     # 조회할 준비 (아직 데이터를 가져오진 않았습니다.)
     qs = Shop.objects.all()  # QuerySet
+    # qs = qs.order_by('-id')  # 매번 정렬을 지정해주실 수도 있겠지만.
+
+    # page = 2
+    page = int(request.GET.get("page", 1))  # 쿼리스트링 값은 기본적으로 문자열 타입
+    paginate_by = 5  # 1페이지를 몇 개씩 끊을 거냐?
+
+    # qs = qs[0:5]  # 1페이지 : 처음 5개 (리스트/문자열의 슬라이싱 문법과 동일)
+    # qs = qs[5:10]  # 2페이지
+    # qs = qs[10:15]  # 3페이지
+
+    start_index = (page - 1) * paginate_by
+    end_index = page * paginate_by
+    qs = qs[start_index:end_index]
 
     return render(
         request,

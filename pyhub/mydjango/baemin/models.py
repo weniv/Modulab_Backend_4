@@ -11,6 +11,9 @@ class Shop(models.Model):
     # photo = models.FileField()  # 모든 파일 포맷 저장 가능
     photo = models.ImageField()  # 이미지만 받아요.
 
+    class Meta:
+        ordering = ["-id"]
+
 
 # 장고의 유효성 검사 함수는 인자는 항상 1개만 받구요.
 # 그 값이 정해진 규칙에서 벗어날 때, ValidationError 예외를 발생.
