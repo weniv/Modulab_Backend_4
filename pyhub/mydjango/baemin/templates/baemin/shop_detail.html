@@ -23,8 +23,13 @@
             <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/edit/">
                 Edit
             </a>
-            <a href="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/delete/"
+            {# HTMX는 서버에서 HTML 응답을 받아, 지정 요소에 반영을 합니다. #}
+            <a hx-post="/baemin/{{ shop.pk }}/reviews/{{ review.pk }}/delete/"
+               hx-confirm="Are you sure?"
+               hx-target="closest .review-wrap"  {# 대상 지정 #}
+               hx-swap="delete"  {# 반영 방법 : delete (서버 응답에 상관없이 대상을 무조건 삭제) #}
                class="btn-review-delete text-danger"
+               style="cursor: pointer;"
             >
                 Delete
             </a>
@@ -33,6 +38,7 @@
         <div>등록된 리뷰가 없습니다. :-(</div>
     {% endfor %}
 
+    {% comment %}
     {% csrf_token %}
     <script>
       const csrf_token = document.querySelector("[name=csrfmiddlewaretoken]").value;
@@ -67,4 +73,5 @@
         });
       });
     </script>
+    {% endcomment %}
 {% endblock %}
