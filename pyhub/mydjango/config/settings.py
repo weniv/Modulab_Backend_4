@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_extensions',
     # local apps
+    'accounts',  # 끝에 콤마(,) 빼먹지 마세요 !!!
     'baemin',
     'blog',
     'chat',
