@@ -8,6 +8,9 @@
 
     <h1>이진석의 블로그</h1>
 
+    {# django-bootstrap5의 bootstrap_messages 템플릿 태그를 통해 렌더링 #}
+    {{ messages }}
+
     {# 로그인 상황일 때 : auth 앱의 User 모델 인스턴스 #}
     {# 로그아웃 상황일 때 : auth 앱의 AnonymousUser 클래스 인스턴스 #}
     {% if not request.user.is_authenticated %}
