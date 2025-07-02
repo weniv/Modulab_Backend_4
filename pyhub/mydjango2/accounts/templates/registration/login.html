@@ -1,0 +1,8 @@
+<h2>login form</h2>
+
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="로그인" />
+    <button>로그인</button>
+</form>
