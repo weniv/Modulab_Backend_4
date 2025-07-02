@@ -31,3 +31,7 @@ register = CreateView.as_view(
 #     pass
 
 login = LoginView.as_view()
+
+
+def profile(request):
+    return render(request, "accounts/profile.html")

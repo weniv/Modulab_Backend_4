@@ -8,6 +8,16 @@
 
     <h1>이진석의 블로그</h1>
 
+    {# 로그인 상황일 때 : auth 앱의 User 모델 인스턴스 #}
+    {# 로그아웃 상황일 때 : auth 앱의 AnonymousUser 클래스 인스턴스 #}
+    {% if not request.user.is_authenticated %}
+        <a href="/register">회원가입</a>
+        <a href="/login">로그인</a>
+    {% else %}
+        <a href="/accounts/profile/">프로필</a>
+        <a href="/logout">로그아웃</a>
+    {% endif %}
+
     {% block content %}{% endblock %}
 
     <hr/>
