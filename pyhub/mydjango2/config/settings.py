@@ -107,10 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+# 현재 프로젝트의 디폴트 "언어 코드"
+#  - 서비스는 1개인데, 유저마다 다른 언어 코드로 시스템 메뉴를 보여줄 수 있습니다.
+LANGUAGE_CODE = "ko-kr"
 
 TIME_ZONE = "UTC"
 
+# 국제화
 USE_I18N = True
 
 USE_TZ = True
