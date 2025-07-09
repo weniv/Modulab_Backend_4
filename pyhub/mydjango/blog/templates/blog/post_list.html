@@ -9,7 +9,7 @@
 
     {% for post in post_list %}
         <div>
-            <a href="/blog/{{ post.id }}/">
+            <a href="{% url 'blog:post_detail' pk=post.pk %}">
                 {{ post.title }}
             </a>
         </div>

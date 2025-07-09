@@ -1,7 +1,8 @@
 # blog/views.py
 from django.http import HttpRequest, HttpResponse
+from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, resolve_url
 from .models import Post
 
 # 최소한의 동작을 하는 Post 모델에 대한 View (Class Based View 활용)
@@ -87,7 +88,16 @@ def comment_new(request: HttpRequest, post_pk: int) -> HttpResponse:
             #    Model 인스턴스를 만들어서 모델의 save 를 호출합니다.
 
             # 대개의 서비스 기획 : 생성 폼에서 생성에 성공하면, 다른 페이지로 이동
-            post_url = f"/blog/{post_pk}/"  # python, f-string 문법
+            # post_url = f"/blog/{post_pk}/"  # python, f-string 문법
+
+            # 가장 기본이 되는 URL Reverse 함수 : reverse
+            # post_url = reverse("blog:post_detail", args=[post_pk])
+            # post_url = reverse("blog:post_detail", kwargs={"pk": post_pk})
+
+            # reverse 함수를 래핑해서, 보다 편리하게 만든 함수
+            # django.shortcuts
+            post_url = resolve_url("blog:post_detail", pk=post_pk)
+
             return redirect(post_url)  # 브라우저에게 이동을 하라고, 지시
 
     return render(request, "blog/comment_form.html", {
