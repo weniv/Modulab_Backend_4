@@ -30,6 +30,9 @@
     {% for comment in comment_list %}
         <div>
             {{ comment.content }}
+
+            {% url 'blog:comment_edit' post_pk=post.pk pk=comment.pk as comment_edit_url %}
+            <a href="{{ comment_edit_url }}">수정</a>
         </div>
     {% endfor %}
 

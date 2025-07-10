@@ -1,7 +1,7 @@
 # blog/views.py
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import render, redirect, resolve_url, get_object_or_404
 from .models import Post
 from .forms import PostForm
@@ -72,6 +72,12 @@ class PostCreateView(CreateView):
     # 서버가 초기 구동될 때, 단 1번 지정됩니다.
     model = Post
     form_class = PostForm
+
+    # 유저마다, 유저의 권한, 유저가 가입한 가격정책에 따라 다른 폼 클래스를 지정하실 수 있습니다.
+    # def get_form_class(self):
+    #     return PostForm
+    #     # return super().get_form_class()
+
     # success_url = reverse_lazy('blog:post_list')
 
     # 자식 클래스에 아래 메서드를 재정의했어요.
@@ -125,6 +131,21 @@ class CommentCreateView(CreateView):
 
 
 comment_new = CommentCreateView.as_view()
+
+
+# TODO: 수정자 만 수정할 수 있도록 합시다.
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentForm
+
+    # success_url =   # 고정
+    def get_success_url(self) -> str:
+        comment: Comment = self.object
+        return resolve_url(comment.post)
+
+
+comment_edit = CommentUpdateView.as_view()
 
 
 # Form 요청을 위해, 하나의 주소에서 GET 요청과 POST 요청을 같이 받습니다. => Django Style
