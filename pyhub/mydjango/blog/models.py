@@ -28,9 +28,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self) -> str:
-    #     """Post 모델에 대한 detail 주소 문자열을 반환"""
-    #     return reverse("blog:post_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self) -> str:
+        """Post 모델에 대한 detail 주소 문자열을 반환"""
+        return reverse("blog:post_detail", kwargs={"pk": self.pk})
 
 
 # 모델에 기본 키를 지정해서 기본키를 변경하는 방법이 있습니다.
