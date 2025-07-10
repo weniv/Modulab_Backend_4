@@ -1,7 +1,7 @@
 # blog/forms.py
 
 from django import forms
-from .models import Comment
+from .models import Comment, Post
 
 
 # forms.Form
@@ -30,3 +30,30 @@ class CommentForm(forms.ModelForm):
 
         # 유저로부터 입력받을 필드만 명시.
         fields = ["content"]
+
+
+# forms.Form  # models.Model은 별개
+# forms.ModelForm
+
+
+# 모델이 바뀌면, 모델폼도 자동으로 변경됩니다.
+#  - 의도치않게 영향을 끼치지 않아야할 곳에 영향을 끼쳐서 로직을 망가뜨린다.
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = "__all__"
+
+# 모델이 바뀌면, 그 모델을 참조하는 코드를 모두 찾아서 수정을 해줘야 하는 거죠.
+
+# class PostForm(forms.Form):
+#     STATUS_CHOICES = [
+#         # DB에 저장될 값, 유저에게 보여질 레이블
+#         ('draft', '임시'),
+#         ('published', '공개'),
+#         ('private', '비공개'),
+#     ]
+#
+#     title = forms.CharField()
+#     content = forms.CharField()
+#     status = forms.ChoiceField(choices=STATUS_CHOICES)

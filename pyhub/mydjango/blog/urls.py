@@ -9,6 +9,7 @@ app_name = "blog"  # 앱 이름과 동일하게 지정하시면 되요.
 # urlpatterns 이름의 리스트 => 이름에 오타가 있으면 안 되요.
 urlpatterns = [
     path("", views.post_list, name="post_list"),
+    path("create/", views.post_new, name="post_new"),
     path("<int:pk>/", views.post_detail, name="post_detail"),
     path("<int:post_pk>/comments/new/", views.comment_new, name="comment_new"),
 ]

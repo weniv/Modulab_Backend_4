@@ -2,8 +2,9 @@
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render, redirect, resolve_url
+from django.shortcuts import render, redirect, resolve_url, get_object_or_404
 from .models import Post
+from .forms import PostForm
 
 # 최소한의 동작을 하는 Post 모델에 대한 View (Class Based View 활용)
 #  - .as_view 호출을 통해, View 함수를 만들어주는 클래스
@@ -24,13 +25,18 @@ post_detail = DetailView.as_view(
     model=Post,
 )
 
+post_new = CreateView.as_view(
+    model=Post,  # template_name 자동 지정, etc.
+    form_class=PostForm,
+)
+
 # def post_detail(request, pk):
 #     post = Post.objects.get(pk=pk)
 #     return render(request, "blog/post_detail.html", {"post": post})
 
 # 생성 : 모델 클래스, 폼 클래스
 
-from blog.forms import CommentForm
+from blog.forms import CommentForm, PostForm
 from blog.models import Comment
 
 # View 구현에서 반복을 줄일 수 있도록 도와주는 장고의 기능 : Class Based View
@@ -38,7 +44,7 @@ from blog.models import Comment
 # comment_new = CreateView.as_view(
 #     model=Comment,
 #     form_class=CommentForm,
-#     success_url="/blog/",  # TODO: 포스팅 detail 로 이동.
+#     # success_url="/blog/",  # TODO: 포스팅 detail 로 이동.
 # )
 
 
@@ -50,6 +56,8 @@ from blog.models import Comment
 def comment_new(request: HttpRequest, post_pk: int) -> HttpResponse:
     # html <form> 요청에서는 method는 단 2가지 : GET or POST (항상 대문자)
     #  <form method="post"> 라고 썼다고 해도, 장고 서버에서는 항상 대문자.
+
+    post = get_object_or_404(Post, pk=post_pk)
 
     if request.method == "GET":
         form = CommentForm()
@@ -77,7 +85,7 @@ def comment_new(request: HttpRequest, post_pk: int) -> HttpResponse:
             # 유저로부터 Post를 지정받지 않는다라고 해서 !!!
             #   - Post 필드 값을 지정하지 않아도 되는 것은 아닙니다.
             #   - 프로그램 코드를 통해 자동 지정되도록 해야합니다.
-            unsaved_comment.post = Post.objects.get(id=post_pk)
+            unsaved_comment.post = post
             # 유사한 예: 유저의 아이피 주소, 유저의 웹브라우저 종류 (사용하는 OS)
             unsaved_comment.save()  # Model의 save
 
@@ -96,9 +104,18 @@ def comment_new(request: HttpRequest, post_pk: int) -> HttpResponse:
 
             # reverse 함수를 래핑해서, 보다 편리하게 만든 함수
             # django.shortcuts
-            post_url = resolve_url("blog:post_detail", pk=post_pk)
+            # post_url = resolve_url("blog:post_detail", pk=post_pk)
+            # return redirect(post_url)  # 브라우저에게 이동을 하라고, 지시
 
-            return redirect(post_url)  # 브라우저에게 이동을 하라고, 지시
+            # return redirect("blog:post_detail", pk=post_pk)
+
+            # 첫번째 인자로 지정한 객체에서 .get_absolute_url 속성이 있으면
+            # 호출하여 (URL Reverse 수행하지 않고)
+            # 그 반환값으로 즉시 이동
+
+            # post_url = resolve_url(post)  # .get_absolute_url 메서드가 있다면 호출해서 활용
+
+            return redirect(post)
 
     return render(request, "blog/comment_form.html", {
         "form": form,

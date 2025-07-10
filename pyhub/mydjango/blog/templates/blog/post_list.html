@@ -9,11 +9,19 @@
 
     {% for post in post_list %}
         <div>
-            <a href="{% url 'blog:post_detail' pk=post.pk %}">
+            {% url "blog:post_detail" pk=post.pk as post_url %}
+            {{ post_url }}
+            <a href="{{ post_url }}">
                 {{ post.title }}
             </a>
         </div>
     {% endfor %}
+
+    <hr />
+
+    <a href="{% url 'blog:post_new' %}">
+        New Post
+    </a>
 
 </body>
 </html>
