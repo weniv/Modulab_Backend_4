@@ -42,6 +42,15 @@ class Post(models.Model):
 #    1) 서비스 개발 비용과 유지 보수 비용 => 개발된 코드를 내가/우리가 커버할 수 있나?
 #    2) 서버 운영 비용을 낮출 수 있고, 유저에게 보다 빠른 서비스 응답을 줄 수 있게 됩니다.
 
+# comment = Comment.objects.all()[0]  # Comment Instance
+# comment.post  # Post Instance
+
+# post = Post.objects.all()[0]  # Post Instance
+# comment_qs = Comment.objects.filter(post=post)
+
+# 관계 필드에서 related_name 속성을 지원
+# comment_qs = post.comment_set.all()
+
 class Comment(models.Model):
     # 댓글 길이 제한을 두지 않으려면.
     # content = models.TextField()

@@ -21,9 +21,24 @@ post_list = ListView.as_view(
 
 # 단건 조회 : 모델 클래스
 
-post_detail = DetailView.as_view(
-    model=Post,
-)
+# class PostDetailView(DetailView):
+#     model = Post
+#
+#     def get_context_data(self, **kwargs) -> dict:
+#         context_data = super().get_context_data(**kwargs)
+#         context_data["comment_list"] = self.object.comment_set.all()
+#         return context_data
+#
+# post_detail = PostDetailView.as_view()
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comment_qs = post.comment_set.all()
+    return render(request, "blog/post_detail.html", {
+        "post": post,
+        "comment_list": comment_qs,
+    })
 
 
 # # .as_view() 함수 호출에 대한 반환값으로서 View 함수가 만들어집니다.
