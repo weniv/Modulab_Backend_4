@@ -1,6 +1,6 @@
 # blog/views.py
 from django.http import HttpRequest, HttpResponse
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, redirect, resolve_url, get_object_or_404
 from .models import Post
@@ -25,9 +25,21 @@ post_detail = DetailView.as_view(
     model=Post,
 )
 
+
+# .as_view() 함수 호출에 대한 반환값으로서 View 함수가 만들어집니다.
+#  - .as_view() 함수는 서버 초기 구동 시에 1회 호출됩니다.
+#  - post_new 함수가 매 요청 시마다 호출이 됩니다.
 post_new = CreateView.as_view(
+    # 아래 인자는 서버가 초기 구동될 때, 단 1번 지정됩니다. (고정된 설정)
     model=Post,  # template_name 자동 지정, etc.
     form_class=PostForm,
+    # URL Reverse 수행을 게으르게(Lazy) 늦춰줍니다.
+    #  실제 값이 필요할 때, 뒤늦게 URL Reverse를 수행합니다.
+    #  reverse_lazy는 대개 CBV as_view 호출 시의 인자 지정에서
+    #   url reverse가 필요할 때 사용하시게 됩니다.
+    success_url=reverse_lazy("blog:post_list"),  # 고정된 주소를 지정할 목적으로 사용
+
+    # TODO: 유동적으로 바뀌는 주소는 어떻게 지정합니까????
 )
 
 # def post_detail(request, pk):
