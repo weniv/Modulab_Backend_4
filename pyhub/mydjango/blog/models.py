@@ -2,6 +2,24 @@ from django.db import models
 from django.urls import reverse
 
 
+# 개발하시다보면, 자주 만드는 쿼리셋 패턴이 다들 몇 개씩 있어요.
+#
+# Post.objects.filter(status=Post.Status.DRAFT)
+# Post.objects.filter(status=Post.Status.PUBLISHED)
+# Post.objects.filter(status=Post.Status.PRIVATE)
+
+
+class PostQuerySet(models.QuerySet):
+    def draft(self):
+        return self.filter(status=Post.Status.DRAFT)
+
+    def published(self):
+        return self.filter(status=Post.Status.PUBLISHED)
+
+    def private(self):
+        return self.filter(status=Post.Status.PRIVATE)
+
+
 class Post(models.Model):
     # choices 는 2개의 값으로 구성된 tuple의 리스트
     # STATUS_CHOICES = [
@@ -28,6 +46,8 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = PostQuerySet.as_manager()
 
     def __str__(self):
         return self.title
