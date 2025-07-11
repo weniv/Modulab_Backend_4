@@ -90,3 +90,4 @@ class Comment(models.Model):
     content = models.CharField(
         max_length=1000,
     )
+    tags = models.CharField(max_length=100, default="")
