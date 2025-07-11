@@ -4,12 +4,16 @@ from django.urls import reverse
 
 class Post(models.Model):
     # choices 는 2개의 값으로 구성된 tuple의 리스트
-    STATUS_CHOICES = [
-        # DB에 저장될 값, 유저에게 보여질 레이블
-        ('draft', '임시'),
-        ('published', '공개'),
-        ('private', '비공개'),
-    ]
+    # STATUS_CHOICES = [
+    #     # DB에 저장될 값, 유저에게 보여질 레이블
+    #     ('draft', '임시'),
+    #     ('published', '공개'),
+    #     ('private', '비공개'),
+    # ]
+    class Status(models.TextChoices):
+        DRAFT = "draft", "임시"
+        PUBLISHED = 'published', '공개'
+        PRIVATE = 'private', '비공개'
 
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -19,8 +23,8 @@ class Post(models.Model):
         #  - 유저로부터의 선택지를 제공. 선택지 이외의 값에 대해서 제한.
         #  - 악의적인 목적으로 유저가 Form을 변조해서 다른 값을 보내더라도
         #    유효성 검사 시에 다 걸러집니다.
-        choices=STATUS_CHOICES,
-        default='draft',
+        choices=Status.choices,
+        default=Status.DRAFT,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
