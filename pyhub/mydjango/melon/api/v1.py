@@ -2,23 +2,30 @@ import json
 from django.http import HttpResponse
 from django.urls import path
 from melon.models import Song
-
+from melon.api.serializers import SongSerializer
 
 def song_list(request):
     qs = Song.objects.all()
 
+    serializer = SongSerializer(
+        instance=qs,
+        many=True,
+    )
+
     # JSON 문자열로 변환 (Serialize)해서, 해당 문자열을 반환
-    song_list_data = [
-        {
-            "uid": song.uid,
-            "rank": song.rank,
-            "title": song.title,
-            "artist": song.artist,
-            # 이 계산을 누가 할래 ??? (BE, FE, 혹은 어느 누군가?)
-            "title_length": len(song.title),  # 계산된 값.
-        }
-        for song in qs
-    ]
+    # song_list_data = [
+    #     {
+    #         "uid": song.uid,
+    #         "rank": song.rank,
+    #         "title": song.title,
+    #         "artist": song.artist,
+    #         # 이 계산을 누가 할래 ??? (BE, FE, 혹은 어느 누군가?)
+    #         "title_length": len(song.title),  # 계산된 값.
+    #     }
+    #     for song in qs
+    # ]
+    song_list_data = serializer.data  # 자동 변환
+
     json_string = json.dumps(song_list_data, ensure_ascii=False)
     return HttpResponse(json_string, content_type="application/json")
 
