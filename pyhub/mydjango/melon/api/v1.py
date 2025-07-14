@@ -14,6 +14,8 @@ def song_list(request):
             "rank": song.rank,
             "title": song.title,
             "artist": song.artist,
+            # 이 계산을 누가 할래 ??? (BE, FE, 혹은 어느 누군가?)
+            "title_length": len(song.title),  # 계산된 값.
         }
         for song in qs
     ]
