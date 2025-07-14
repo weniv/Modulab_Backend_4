@@ -22,6 +22,13 @@ with open(json_path, "rt", encoding="utf-8") as f:
     # print(song_list)
     print(f"{len(song_list)} 개의 곡 정보를 로딩했습니다.")
 
+# 전체 노래를 모두 삭제 후에
+print("Deleting all songs ...")
+Song.objects.all().delete()
+# 다시 저장하겠다.
+
+instance_list = []
+
 for song_data in song_list:
     release_date_str = song_data['발매일']
     release_date = datetime.strptime(release_date_str, '%Y-%m-%d').date()
@@ -38,8 +45,24 @@ for song_data in song_list:
         release_date = release_date,
         likes = int(song_data['좋아요']),
     )
-    print(params)
+    # 출력 자체도 출력에 비용이 듭니다.
+    # print(params)
 
     # 수행 즉시 데이터베이스에 INSERT 수행
-    song = Song.objects.create(**params)
+    #  - 10만건, 100만건 이상이라면 !!!
+
+    # song = Song.objects.create(**params)
+
+    song = Song(**params)  # 인스턴스만 생성했음.
+    # song.save()   # INSERT 쿼리가 날아가는 부분 !!!
+
+    # 같은 타입의 모델 인스턴스를 누적합니다.
+    instance_list.append(song)
+
     print(song)
+
+
+# 최대 1000개 단위로 INSERT 쿼리를 모아서, DB에 요청합니다.
+Song.objects.bulk_create(instance_list, batch_size=1000)
+
+print("Total :", Song.objects.all().count())
