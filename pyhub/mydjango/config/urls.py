@@ -13,6 +13,7 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('blog/', include('blog.urls')),  # 별도의 tuple
     path('baemin/', include('baemin.urls')),
+    path('melon/', include('melon.urls')),
     # 어떤 응답을 할까?
     #  - 1) Template을 통해 HTML 응답을 할까?
     #  - 2) 다른 페이지로 이동을 시켜볼 수도 있겠습니다.
