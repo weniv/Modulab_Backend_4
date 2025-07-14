@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_bootstrap5',
     'django_extensions',
+    'rest_framework',
     # local apps
     'accounts',  # 끝에 콤마(,) 빼먹지 마세요 !!!
     'baemin',
