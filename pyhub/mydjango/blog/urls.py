@@ -1,6 +1,6 @@
 # blog/urls.py
 
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = "blog"  # 앱 이름과 동일하게 지정하시면 되요.
@@ -13,4 +13,7 @@ urlpatterns = [
     path("<int:pk>/", views.post_detail, name="post_detail"),
     path("<int:post_pk>/comments/new/", views.comment_new, name="comment_new"),
     path("<int:post_pk>/comments/<int:pk>/edit/", views.comment_edit, name="comment_edit"),
+
+    # api
+    path("api/v1/", include("blog.api.v1")),
 ]
