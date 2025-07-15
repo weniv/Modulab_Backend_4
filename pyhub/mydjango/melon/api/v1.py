@@ -7,6 +7,7 @@ from rest_framework.generics import (
     ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 )
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from melon.models import Song, Todo
 from melon.api.serializers import SongSerializer, TodoSerializer
 
@@ -39,17 +40,74 @@ song_list = ListAPIView.as_view(
 )
 
 
-# TODO: admin에 Todo 등록하시고 admin에서 Todo를 5개 생성
-# TODO: 아래 todo_list api 구현하시고,
-# TODO: 아래 urlpatterns에 등록하시고
-# TODO: 브라우저로 해당 Todo 목록을 확인하시고, 해당 스샷을 "Todo API를 만들어봅시다." 쓰레드 공유 !!!
-todo_list = ListAPIView.as_view(
-    queryset=Todo.objects.all(),
-    serializer_class=TodoSerializer,
-)
+#
+# todos/
+#
+
+class TodoViewSet(ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+# ViewSet의 .as_view() 메서드는 일반적인 CBV의 as_view와 인자가 다릅니다.
+#  - 최소 5개의 View 함수를 만들 수 있습니다.
+todo_list_or_new = TodoViewSet.as_view({
+    # CBV에는 get, post 메서드가 있고
+    # GET 요청에서는 get 메서드를 호출해서 요청을 처리합니다.
+    "get": "list",
+    "post": "create",
+})
+
+todo_detail_or_edit_or_delete = TodoViewSet.as_view({
+    "get": "retrieve",
+    "put": "update",
+    "patch": "partial_update",
+    "delete": "destroy",
+})
+
+#
+#
+#
+# todo_list = ListAPIView.as_view(
+#     queryset=Todo.objects.all(),
+#     serializer_class=TodoSerializer,
+# )
+#
+# # Form 처리에서는 GET 요청과 POST 요청을 지원했습니다.
+# # API 에서는 생성에 대해서는 POST 요청만을 받습니다.
+# #  - UI 부분은 API에서 신경쓰지 않아요. 단지 생성 요청 만을 받을 뿐.
+# todo_new = CreateAPIView.as_view(
+#     queryset=Todo.objects.all(),
+#     serializer_class=TodoSerializer,  # Form과 유사한 역할로서 유효성 검사/저장
+# )
+#
+# @api_view(["GET", "POST"])
+# def todo_list_or_new(request):
+#     if request.method == "GET":
+#         return todo_list(request)
+#     else:
+#         return todo_new(request)
+#
+#
+#
+# todo_detail = RetrieveAPIView.as_view(
+#     queryset=Todo.objects.all(),
+#     serializer_class=TodoSerializer,
+# )
+#
+# todo_edit = UpdateAPIView.as_view(
+#     queryset=Todo.objects.all(),
+#     serializer_class=TodoSerializer,  # Form과 유사한 역할로서 유효성 검사/저장
+# )
+#
+# todo_delete = DestroyAPIView.as_view(
+#     queryset=Todo.objects.all(),
+#     # serializer_class=TodoSerializer,
+# )
 
 
 urlpatterns = [
     path("songs/", song_list),
-    path("todos/", todo_list),
+    path("todos/", todo_list_or_new),
+    path("todos/<int:pk>/", todo_detail_or_edit_or_delete),
 ]
