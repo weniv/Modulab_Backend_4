@@ -1,4 +1,5 @@
 import json
+from django.db.models.functions import Length
 from django.http import HttpResponse
 from django.urls import path
 from melon.models import Song
@@ -8,7 +9,9 @@ from melon.api.serializers import SongSerializer
 #  - 관심사의 분리
 
 def song_list(request):
+    # Database Function 을 호출해서, title 길이 계산을 요청하는 거죠.
     qs = Song.objects.all()
+    qs = qs.annotate(title_length=Length("title"))
 
     # 데이터 변환의 기능을 제공 (시리얼라이저 오리지널 기능)
     #  - 입력 데이터에 대한 유효성 검사 및 저장 (ModelForm의 기능)
