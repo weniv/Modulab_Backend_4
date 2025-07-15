@@ -24,3 +24,10 @@ class Song(models.Model):
 
     def __str__(self):
         return f"[{self.rank}] {self.title} - {self.artist}"
+
+
+class Todo(models.Model):
+    content = models.TextField()
+    is_done = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

@@ -7,9 +7,8 @@ from rest_framework.generics import (
     ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 )
 from rest_framework.response import Response
-from melon.models import Song
-from melon.api.serializers import SongSerializer
-
+from melon.models import Song, Todo
+from melon.api.serializers import SongSerializer, TodoSerializer
 
 # Django View -> APIView 기반으로 래핑 (Wrapping)
 
@@ -40,8 +39,17 @@ song_list = ListAPIView.as_view(
 )
 
 
+# TODO: admin에 Todo 등록하시고 admin에서 Todo를 5개 생성
+# TODO: 아래 todo_list api 구현하시고,
+# TODO: 아래 urlpatterns에 등록하시고
+# TODO: 브라우저로 해당 Todo 목록을 확인하시고, 해당 스샷을 "Todo API를 만들어봅시다." 쓰레드 공유 !!!
+todo_list = ListAPIView.as_view(
+    queryset=Todo.objects.all(),
+    serializer_class=TodoSerializer,
+)
 
 
 urlpatterns = [
     path("songs/", song_list),
+    path("todos/", todo_list),
 ]

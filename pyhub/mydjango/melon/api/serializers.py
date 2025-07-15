@@ -2,7 +2,7 @@
 
 # from django import forms
 from rest_framework import serializers
-from melon.models import Song
+from melon.models import Song, Todo
 
 
 # class SongForm(forms.ModelForm):
@@ -32,3 +32,9 @@ class SongSerializer(serializers.ModelSerializer):
         # fields = "__all__"  # 추천드리지 않아요. 의도치않게 모델 필드가 api로 노출될 수 있습니다.
         # 명시적인 지정을 추천드립니다.
         fields = ["id", "rank", "album", "title", "artist", "title_length"]
+
+
+class TodoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Todo
+        fields = ["pk", "content", "is_done", "created_at", "updated_at"]
