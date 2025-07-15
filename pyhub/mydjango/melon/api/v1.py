@@ -25,8 +25,9 @@ from melon.api.serializers import SongSerializer, TodoSerializer
 #     )
 #     song_list_data = serializer.data  # 자동 변환을 즉시 수행.
 #
-#     # Renderer
+#     # Renderer : 플러그인 방식으로 쉽게 지원을 붙일 수 있어요.
 #     #  - 디폴트 DRF Renderer : HTML Renderer, JSON Renderer
+#     #  - 추가로 구현해본다면 : PDF Renderer, Xlsx Renderer, CSV Renderer 등
 #
 #     return Response(song_list_data)
 
