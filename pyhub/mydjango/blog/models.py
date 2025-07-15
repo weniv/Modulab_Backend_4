@@ -1,6 +1,13 @@
 from django.db import models
 from django.urls import reverse
 
+# 장고 기본에서 지원하는 User 모델
+#  - 다른 User 모델로 바꿀 수 있습니다. => Ultra Tip : 초기 migrate 하기 전에 바꾸세요.
+#  - 매 요청을 처리할 때마다, DB에서 관련 User를 조회합니다. => request.user 속성
+#  - 그 유저 관련한 필드들은 별도의 모델을 통해서 관리하시는 것을 추천드립니다.
+#    - 기존 User 확장 모델 => Profile 모델 = 1:1 관계 (models.OneToOneField)
+# from django.contrib.auth.models import User  # auth.User
+
 
 # 개발하시다보면, 자주 만드는 쿼리셋 패턴이 다들 몇 개씩 있어요.
 #
@@ -32,6 +39,8 @@ class Post(models.Model):
         DRAFT = "draft", "임시"
         PUBLISHED = 'published', '공개'
         PRIVATE = 'private', '비공개'
+
+    author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
 
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -78,6 +87,15 @@ class Post(models.Model):
 class Comment(models.Model):
     # 댓글 길이 제한을 두지 않으려면.
     # content = models.TextField()
+
+    author = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        # 아래 두 필드 모두 False이면 => 이 필드는 필수필드가 됩니다.
+        # blank=False,  # Form 입장 : 빈 입력필드를 허용할 여부
+        # null=False,   # DB 입장 : 값이 없는 상황 (NULL)을 허용할지 여부
+        # default=1,
+    )
 
     # Post의 기본키를 가리키는 필드 => 외래키 (Foreign Key)
     post = models.ForeignKey(
