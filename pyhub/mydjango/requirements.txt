@@ -8,3 +8,6 @@ django-bootstrap5
 
 django-debug-toolbar
 django-extensions
+
+pandas
+openpyxl
