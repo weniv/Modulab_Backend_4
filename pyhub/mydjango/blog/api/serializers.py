@@ -23,6 +23,7 @@ class PostListSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             "id",
+            "author",  # 외래키 값만 노출하는 구나.
             "title",
             # "content",  # content 필드는 노출하지 않습니다.
             "status",
