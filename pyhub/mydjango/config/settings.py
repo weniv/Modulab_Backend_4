@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third apps
-    'debug_toolbar',
     'django_bootstrap5',
     'django_extensions',
     'rest_framework',
@@ -51,9 +50,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # TODO: DEBUG 상황에서만 적용되도록 할 거예요.
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -166,3 +162,30 @@ INTERNAL_IPS = ["127.0.0.1"]
 #  - 기본 구성으로는 INTERNAL_IPS에 지정된 주소로 접속했을 때에 무조건 DDT 보여줍니다.
 #  - 커스텀으로 파이썬 함수를 통해 보여줄 지 말지를 결정해줄 수 있어요.
 #    ngrok 을 통한 요청인지 여부를 판단해서, 결정해줄 수 있을 듯 합니다.
+
+if DEBUG:
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+
+    MIDDLEWARE = [
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    ] + MIDDLEWARE
+
+    DEFAULT_RENDERER_CLASSES = [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+
+else:
+    DEFAULT_RENDERER_CLASSES = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+
+
+# django rest framework
+# https://www.django-rest-framework.org/api-guide/renderers/
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
+}
