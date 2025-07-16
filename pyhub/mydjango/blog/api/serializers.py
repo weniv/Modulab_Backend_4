@@ -8,8 +8,9 @@
 #  - 현재의 앱이 다른 장고 프로젝트에서 활용될 수도 있어요. => 다른 경로의 User 환경일 수도 있다는 거죠.
 # from django.contrib.auth.models import User
 
-from django.conf import settings  # settings.AUTH_USER_MODEL = "auth.User"
+# from django.conf import settings  # settings.AUTH_USER_MODEL = "auth.User"
 from django.contrib.auth import get_user_model
+from django.db.models import QuerySet
 
 from rest_framework import serializers
 from blog.models import Post, Comment
@@ -20,6 +21,11 @@ User = get_user_model()  # 현재 프로젝트에 활성화된 User 모델 클�
 
 # 변환 (read), 유효성 검사 (write, create/update)
 class PostSerializer(serializers.ModelSerializer):
+
+    @staticmethod
+    def get_optimized_queryset() -> QuerySet[Post]:
+        return Post.objects.published()
+
     class Meta:
         model = Post
         fields = [
@@ -48,6 +54,10 @@ class PostListSerializer(serializers.ModelSerializer):
     # author = serializers.StringRelatedField(read_only=True)
 
     author = AuthorSerializer()
+
+    @staticmethod
+    def get_optimized_queryset() -> QuerySet[Post]:
+        return Post.objects.published().defer("content").select_related("author")
 
     class Meta:
         model = Post
