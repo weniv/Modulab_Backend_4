@@ -57,7 +57,8 @@ class PostListSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_optimized_queryset() -> QuerySet[Post]:
-        return Post.objects.published().defer("content").select_related("author")
+        return Post.objects.all().defer("content").select_related("author")
+        # return Post.objects.published().defer("content").select_related("author")
 
     class Meta:
         model = Post

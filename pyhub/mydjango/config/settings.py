@@ -194,5 +194,7 @@ REST_FRAMEWORK = {
     # 페이지 크기 전역 설정
     "PAGE_SIZE": env.int("REST_FRAMEWORK_PAGE_SIZE", default=5),
     # 페이지네이션 전역 설정
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    # "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.CursorPagination",
+    "DEFAULT_PAGINATION_CLASS": "blog.pagination.PkCursorPagination",
 }
