@@ -190,4 +190,9 @@ else:
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
+
+    # 페이지 크기 전역 설정
+    "PAGE_SIZE": env.int("REST_FRAMEWORK_PAGE_SIZE", default=5),
+    # 페이지네이션 전역 설정
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
 }
