@@ -1,3 +1,6 @@
+from django.conf import settings  # global settings + project settings
+# from config import settings  # XXX
+
 from django.db import models
 from django.urls import reverse
 
@@ -40,7 +43,7 @@ class Post(models.Model):
         PUBLISHED = 'published', '공개'
         PRIVATE = 'private', '비공개'
 
-    author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -89,7 +92,7 @@ class Comment(models.Model):
     # content = models.TextField()
 
     author = models.ForeignKey(
-        "auth.User",
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         # 아래 두 필드 모두 False이면 => 이 필드는 필수필드가 됩니다.
         # blank=False,  # Form 입장 : 빈 입력필드를 허용할 여부
