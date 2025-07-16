@@ -8,7 +8,7 @@ from blog.api.serializers import PostSerializer, PostListSerializer
 
 post_list = ListAPIView.as_view(
     # queryset=Post.objects.filter(status=Post.Status.PUBLISHED),
-    queryset=Post.objects.published(),
+    queryset=Post.objects.published().defer("content"),
     serializer_class=PostListSerializer,  # 고정. but 동적 지정도 가능.
 )
 
