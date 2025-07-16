@@ -19,6 +19,14 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PostListSerializer(serializers.ModelSerializer):
+    # ModelSerializer가 생성해준 필드를 덮어쓰기 (ModelForm도 마찬가지)
+
+    author = serializers.SerializerMethodField()
+    def get_author(self, post) -> str:
+        return str(post.author)
+
+    # author = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Post
         fields = [
