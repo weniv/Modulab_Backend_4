@@ -1,5 +1,5 @@
 import pytest
-import calculator
+from calculator import calculator
 
 @pytest.mark.it("1과 2의 합은 3이어야 합니다.")
 def test_mysum_1():
