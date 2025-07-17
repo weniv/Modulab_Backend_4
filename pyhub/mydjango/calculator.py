@@ -1,0 +1,22 @@
+
+# 기능 정의
+# 기능의 인터페이스를 먼저 만들어요. (구현은 하지 않아요.)
+# 테스트를 먼저 작성합니다.
+# 테스트를 구동해서, 테스트 실패를 확인합니다.
+# 구현하면서, 중간 테스트를 수행해보구요.
+# 모든 테스트가 성공하겠죠.
+def mysum(a: int, b: int) -> int:
+    """
+    두 인자의 합을 반환합니다.
+    """
+    # docstring
+    # if a == 1 and b == 2:
+    #     return 3
+    # return 0
+    return a + b
+
+
+assert mysum(1, 2) == 3
+# Edge Case
+assert mysum(100, 1000) == 1100
+assert mysum(10, 100) != 0
