@@ -2,6 +2,8 @@
 
 from django.urls import path
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
+
 from blog.api.serializers import PostSerializer, PostListSerializer, PostCreateSerializer
 
 
@@ -18,6 +20,7 @@ post_list = ListAPIView.as_view(
 
 class PostCreateAPIView(CreateAPIView):
     serializer_class = PostCreateSerializer
+    permission_classes = [IsAuthenticated]  # @login_required 장식자와 비슷
 
     # 웹페이지에서 로그인된 상황에서 테스트해봅시다.
     def perform_create(self, serializer):

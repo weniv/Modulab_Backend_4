@@ -178,10 +178,19 @@ if DEBUG:
         'blog.renderers.PandasXlsxRenderer',
     ]
 
+    DEFAULT_AUTHENTICATION_CLASSES = [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+
 else:
     DEFAULT_RENDERER_CLASSES = [
         'rest_framework.renderers.JSONRenderer',
         'blog.renderers.PandasXlsxRenderer',
+    ]
+
+    DEFAULT_AUTHENTICATION_CLASSES = [
+        'rest_framework.authentication.SessionAuthentication',
     ]
 
 
@@ -189,6 +198,7 @@ else:
 # https://www.django-rest-framework.org/api-guide/renderers/
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES,
 
     # 페이지 크기 전역 설정

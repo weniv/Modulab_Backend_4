@@ -5,6 +5,11 @@ from django.shortcuts import redirect, render
 from .forms import SignupForm
 
 
+# from django.contrib.auth import login as auth_login
+# username/password 유효성 검사 후에, auth_login(request) 호출해서 세션 인증토록 구현마시고,
+# LoginView를 적극 활용해주세요.
+
+
 login = LoginView.as_view(
     template_name="accounts/login_form.html",
 )

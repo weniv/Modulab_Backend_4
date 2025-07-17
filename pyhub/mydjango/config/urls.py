@@ -7,6 +7,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
     path('accounts/', include('accounts.urls')),
     # chat/urls에 있는 모든 URL 패턴에 일괄적으로
     #  chat/ 라는 prefix 주소를 부여하겠다.

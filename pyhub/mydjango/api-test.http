@@ -8,3 +8,14 @@ GET {{BASE_URL}}/blog/api/v1/posts/
 ### 블로그 포스팅 #17 조회
 
 GET {{BASE_URL}}/blog/api/v1/posts/17/
+
+### 블로그 포스팅 생성 요청
+
+POST {{BASE_URL}}/blog/api/v1/posts/
+Authorization: Basic usr1 pass
+Content-Type: application/json
+
+{
+    "title": "New Post",
+    "content": "New Post Content"
+}
