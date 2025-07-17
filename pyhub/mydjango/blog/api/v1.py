@@ -15,9 +15,16 @@ post_list = ListAPIView.as_view(
 # 아래 코드 만으로 충분합니다.
 # 그런데, 데이터베이스 저장 전에 추가로 할당해야할 필드 (ex: author)가 있다면
 # 데이터베이스 저장 전에 할당을 해줘야겠죠.
-post_new = CreateAPIView.as_view(
-    serializer_class=PostCreateSerializer,
-)
+
+class PostCreateAPIView(CreateAPIView):
+    serializer_class = PostCreateSerializer
+
+    # 웹페이지에서 로그인된 상황에서 테스트해봅시다.
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+
+post_new = PostCreateAPIView.as_view()
 
 
 post_detail = RetrieveAPIView.as_view(
