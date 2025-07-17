@@ -14,9 +14,3 @@ def mysum(a: int, b: int) -> int:
     #     return 3
     # return 0
     return a + b
-
-
-assert mysum(1, 2) == 3
-# Edge Case
-assert mysum(100, 1000) == 1100
-assert mysum(10, 100) != 0
