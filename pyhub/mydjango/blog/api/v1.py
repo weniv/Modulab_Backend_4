@@ -2,6 +2,7 @@
 
 from rest_framework.routers import DefaultRouter
 from rest_framework.viewsets import ModelViewSet
+from blog.api.permissions import IsAuthorOrReadonly
 from blog.api.serializers import PostSerializer, PostListSerializer
 from blog.models import Post
 
@@ -10,6 +11,7 @@ from blog.models import Post
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()  # 고정. 가변적으로 줄려면 get_queryset 메서드를 구현.
     serializer_class = PostSerializer  # 고정. 가변적으로 줄려면 get_serializer_class 메서드를 구현.
+    permission_classes = [IsAuthorOrReadonly]
 
     def get_queryset(self):
         if self.action == "list":
