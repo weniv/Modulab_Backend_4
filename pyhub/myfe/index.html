@@ -3,7 +3,7 @@
 <script>
     async function loadProfile() {
         const config = { credentials: "include" };
-        const res = await fetch("http://127.0.0.1:8000/accounts/api/v1/profile/", config);
+        const res = await fetch("http://localhost:8000/accounts/api/v1/profile/", config);
         console.log("res :", res);
         const profile = await res.json();
         console.log(profile);
