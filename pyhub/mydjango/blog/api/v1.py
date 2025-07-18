@@ -11,7 +11,7 @@ from blog.models import Post
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()  # 고정. 가변적으로 줄려면 get_queryset 메서드를 구현.
     serializer_class = PostSerializer  # 고정. 가변적으로 줄려면 get_serializer_class 메서드를 구현.
-    permission_classes = [IsAuthorOrReadonly]
+    permission_classes = [IsAuthorOrReadonly]  # 디폴트: [AllowAny]
 
     def get_queryset(self):
         if self.action == "list":
